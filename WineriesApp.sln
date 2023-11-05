@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineriesApp.Api", "src\Wine
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2DFDD260-06E8-47E0-AA4A-B46F1227F873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineriesApp.Services", "src\WineriesApp.Services\WineriesApp.Services.csproj", "{E4DCE9F9-66D7-4572-88CB-5C3EB09CEF5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineriesApp.Services", "src\WineriesApp.Services\WineriesApp.Services.csproj", "{E4DCE9F9-66D7-4572-88CB-5C3EB09CEF5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FABACC92-5FE1-42D3-8D25-C3628CAC35ED}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
