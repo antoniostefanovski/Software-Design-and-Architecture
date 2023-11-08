@@ -1,5 +1,7 @@
 using CsvHelper.Configuration;
 using System.Globalization;
+using Wineries.DataContext;
+using WineriesApp.Api.Infrastructure.Startup;
 using WineriesApp.Services.Filters;
 using WineriesApp.Services.Pipes;
 
@@ -12,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureDbContext(builder.Environment, builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,29 +25,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+await app.Services.ApplyMigrations();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-var pipe = new Pipe<string>();
-pipe.AddFilter(new WebsiteFilter());
-pipe.AddFilter(new CoordinatesFilter());
-pipe.AddFilter(new PhoneFormatFilter());
-
-using (var reader = new StreamReader("Resources/data_wineries.csv"))
-{
-    reader.ReadLine(); // Skip Headers
-
-    var line = pipe.RunFilters(reader.ReadLine() ?? string.Empty);
-
-    Console.WriteLine(line);
-
-    //while (line != null)
-    //{
-    //    line = pipe.RunFilters(line);
-    //}
-}
 
 app.Run();
