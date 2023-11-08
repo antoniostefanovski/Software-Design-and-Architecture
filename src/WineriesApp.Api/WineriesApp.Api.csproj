@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wineries.DataContext\Wineries.DataContext.csproj" />
+    <ProjectReference Include="..\WineriesApp.DataContext\WineriesApp.DataContext.csproj" />
     <ProjectReference Include="..\WineriesApp.Services\WineriesApp.Services.csproj" />
   </ItemGroup>
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Wineries.DataContext.Extensions;
-using Wineries.DataContext.Models;
+using WineriesApp.DataContext.Extensions;
+using WineriesApp.DataContext.Models;
 
-namespace Wineries.DataContext
+namespace WineriesApp.DataContext
 {
     public class WineriesDbContext : DbContext
     {

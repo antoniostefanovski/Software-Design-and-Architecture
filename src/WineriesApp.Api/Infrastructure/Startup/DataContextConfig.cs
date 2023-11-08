@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
-using Wineries.DataContext;
+using WineriesApp.DataContext;
 
 namespace WineriesApp.Api.Infrastructure.Startup
 {

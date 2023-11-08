@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wineries.DataContext.Helpers
+namespace WineriesApp.DataContext.Helpers
 {
     public static class DbContextHelper
     {

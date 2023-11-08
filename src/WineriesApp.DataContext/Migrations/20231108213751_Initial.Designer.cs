@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Wineries.DataContext;
+using WineriesApp.DataContext;
 
 #nullable disable
 
-namespace Wineries.DataContext.Migrations
+namespace WineriesApp.DataContext.Migrations
 {
     [DbContext(typeof(WineriesDbContext))]
-    partial class WineriesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231108213751_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Wineries.DataContext.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Wineries.DataContext.Models.Winery", b =>
+            modelBuilder.Entity("WineriesApp.DataContext.Models.Winery", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

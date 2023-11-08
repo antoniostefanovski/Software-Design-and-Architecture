@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wineries.DataContext.Extensions
+namespace WineriesApp.DataContext.Extensions
 {
     public static class ModelBuilderExtensions
     {
