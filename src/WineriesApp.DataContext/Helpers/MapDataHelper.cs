@@ -4,11 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wineries.DataContext.Models;
+using WineriesApp.DataContext.Models;
 using WineriesApp.Services.Filters;
 using WineriesApp.Services.Pipes;
 
-namespace Wineries.DataContext.Helpers
+namespace WineriesApp.DataContext.Helpers
 {
     public static class MapDataHelper
     {

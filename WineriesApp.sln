@@ -16,7 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wineries.DataContext", "src\Wineries.DataContext\Wineries.DataContext.csproj", "{7BF373F9-BD0E-421A-9CC9-D96298941209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineriesApp.DataContext", "src\Wineries.DataContext\WineriesApp.DataContext.csproj", "{7BF373F9-BD0E-421A-9CC9-D96298941209}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineriesApp.DataContext", "src\WineriesApp.DataContext\WineriesApp.DataContext.csproj", "{CD7622BB-82A9-41EE-8A01-85518AE40B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{7BF373F9-BD0E-421A-9CC9-D96298941209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BF373F9-BD0E-421A-9CC9-D96298941209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BF373F9-BD0E-421A-9CC9-D96298941209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD7622BB-82A9-41EE-8A01-85518AE40B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD7622BB-82A9-41EE-8A01-85518AE40B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD7622BB-82A9-41EE-8A01-85518AE40B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD7622BB-82A9-41EE-8A01-85518AE40B4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{6035A508-F09D-4E5C-9B4D-85FEADE58B8A} = {2DFDD260-06E8-47E0-AA4A-B46F1227F873}
 		{E4DCE9F9-66D7-4572-88CB-5C3EB09CEF5D} = {2DFDD260-06E8-47E0-AA4A-B46F1227F873}
 		{7BF373F9-BD0E-421A-9CC9-D96298941209} = {2DFDD260-06E8-47E0-AA4A-B46F1227F873}
+		{CD7622BB-82A9-41EE-8A01-85518AE40B4D} = {2DFDD260-06E8-47E0-AA4A-B46F1227F873}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AEA4579-B897-49B9-9955-794F4854A399}

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Wineries.DataContext.Helpers;
+using WineriesApp.DataContext.Helpers;
 using WineriesApp.Services.Filters;
 using WineriesApp.Services.Pipes;
 
 #nullable disable
 
-namespace Wineries.DataContext.Migrations
+namespace WineriesApp.DataContext.Migrations
 {
     public partial class Populate_With_Initial_Data : Migration
     {
