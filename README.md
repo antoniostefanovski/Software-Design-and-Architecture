@@ -1,4 +1,4 @@
-![Logo_Repo](https://github.com/antoniostefanovski/Software-Design-and-Architecture/assets/92383587/6e4b70fa-4eff-43c8-96a5-c4853230e7a6)
+![Logo_Repo](https://github.com/antoniostefanovski/Software-Design-and-Architecture/assets/92383587/a9375b66-86ac-43ae-9d75-e233085ae9dd)
 
 # Winedonia - Дизајн и архитектура на софтвер
 
