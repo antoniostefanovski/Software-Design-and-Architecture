@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using WineriesApp.DataContext.Helpers;
-using WineriesApp.Services.Filters;
-using WineriesApp.Services.Pipes;
+using WineriesApp.Common.Filters;
+using WineriesApp.Common.Pipes;
 
 #nullable disable
 

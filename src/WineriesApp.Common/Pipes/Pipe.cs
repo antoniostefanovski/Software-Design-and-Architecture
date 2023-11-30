@@ -1,6 +1,6 @@
-﻿using WineriesApp.Services.Filters;
+﻿using WineriesApp.Common.Filters;
 
-namespace WineriesApp.Services.Pipes
+namespace WineriesApp.Common.Pipes
 {
     public class Pipe<T>
     {
