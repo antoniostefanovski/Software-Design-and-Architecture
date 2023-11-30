@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WineriesApp.DataContext.Models;
+using WineriesApp.Services.Models;
 using WineriesApp.Services.Services;
 
 namespace WineriesApp.Api.Controllers
@@ -15,8 +15,22 @@ namespace WineriesApp.Api.Controllers
             this.wineryService = wineryService;
         }
 
-        [HttpGet("wineries")]
-        public async Task<List<Winery>> SearchWineries(string? searchTerm, double? rating)
-            => await wineryService.SearchWineriesByName(searchTerm, rating);
+        [HttpPost("wineries")]
+        public async Task<IEnumerable<WineriesInfo>> SearchWineries(string? searchTerm, params double[] ratings)
+        {
+            var wineries = await wineryService.SearchWineriesByName(searchTerm, ratings);
+
+            return wineries.Select(w => new WineriesInfo
+            {
+                Address = w.Address,
+                Contact = w.PhoneNumber,
+                Longitude = w.Longitude.ToString(),
+                Latitude = w.Latitude.ToString(),
+                Municipality = w.Municipality,
+                Name = w.Name,
+                Rating = w.Rating,
+                Url = w.Website
+            });
+        }
     }
 }

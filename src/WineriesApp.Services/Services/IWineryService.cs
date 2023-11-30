@@ -4,6 +4,6 @@ namespace WineriesApp.Services.Services
 {
     public interface IWineryService
     {
-        public Task<List<Winery>> SearchWineriesByName(string? searchTerm, double? Rating);
+        public Task<List<Winery>> SearchWineriesByName(string? searchTerm, double[] ratings);
     }
 }

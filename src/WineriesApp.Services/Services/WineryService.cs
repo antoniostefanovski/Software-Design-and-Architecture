@@ -13,25 +13,22 @@ namespace WineriesApp.Services.Services
             this.context = context;
         }
 
-        public Task<List<Winery>> SearchWineriesByName(string? searchTerm, double? Rating)
+        public Task<List<Winery>> SearchWineriesByName(string? searchTerm, double[] ratings)
         {
             Func<Winery, bool> whereQuery = v => true;
 
-            if (!string.IsNullOrEmpty(searchTerm) && Rating is not null)
+            if (!string.IsNullOrEmpty(searchTerm) && ratings.Any())
             {
-                whereQuery = v => v.Name.Contains(searchTerm) && v.Rating == Rating;
-            }
-            else if (searchTerm is not null)
+                whereQuery = v => v.Name.ToLower().Contains(searchTerm.ToLower()) && ratings.Any(r => v.Rating >= r);
+            } else if (searchTerm is not null)
             {
-                whereQuery = v => v.Name.Contains(searchTerm);
-            }
-
-            if (Rating is not null)
+                whereQuery = v => v.Name.ToLower().Contains(searchTerm.ToLower());
+            } else if (ratings.Any())
             {
-                whereQuery = v => v.Rating == Rating;
+                whereQuery = v => ratings.Any(r => v.Rating >= r);
             }
 
-            return context.Wineries.Where(whereQuery).AsQueryable().ToListAsync();
+            return Task.FromResult(context.Wineries.Where(whereQuery).ToList());
         }
     }
 }

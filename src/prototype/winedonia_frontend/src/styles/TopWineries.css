@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-container {
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+.navbar-menu, .navbar-menu-2 {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-menu li, .navbar-menu-2 li {
+    margin: 5px;
+    font-size: 1.3rem;
+    margin-top: 20px;
+}
+
+.navbar-menu li:nth-child(1), .navbar-menu li:nth-child(3) {
+    margin-top: 40px;
+} 
+
+.navbar-menu li > a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-menu-2 li > a {
+    text-decoration: none;
+    color: white;
+}
+
+.img-menu {
+    width: 70px;
+    height: 70px;
+}
+
+.after-nav-container {
+    width: 100%;
+    background-color: #940c01;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.section-search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.search-bar {
+    width: 500px;
+    height: 35px;
+    border-radius: 8px;
+    background: #f1f1f1;
+    margin-right: 5px;
+    font-size: 1.1rem;
+}
+
+.search-button {
+    width: 50px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    background-color: #940c01;
+    color: white;
+}
+
+.section-top-wineries-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.top-wineries-title span {
+    color: #940c01;
+}
+
+.card {
+    width: 350px;
+    margin: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.img-card {
+    width: 350px;
+    height: 200px;
+}
+
+.section-top-wineries-cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.btn-info {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #940c01;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-info a {
+    text-decoration: none;
+    color: white;
+}
+

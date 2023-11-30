@@ -8,6 +8,7 @@ using WineriesApp.Common.Pipes;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.ConfigureServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
 await app.Services.ApplyMigrations();
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowLocalhost3000");
 
 app.UseAuthorization();
 
