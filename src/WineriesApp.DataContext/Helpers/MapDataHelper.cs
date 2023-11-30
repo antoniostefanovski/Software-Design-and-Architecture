@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WineriesApp.Common.Filters;
+using WineriesApp.Common.Pipes;
 using WineriesApp.DataContext.Models;
-using WineriesApp.Services.Filters;
-using WineriesApp.Services.Pipes;
 
 namespace WineriesApp.DataContext.Helpers
 {

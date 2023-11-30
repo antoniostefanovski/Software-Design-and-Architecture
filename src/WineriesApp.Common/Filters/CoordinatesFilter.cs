@@ -1,4 +1,4 @@
-﻿namespace WineriesApp.Services.Filters
+﻿namespace WineriesApp.Common.Filters
 {
     public class CoordinatesFilter : IFilter<string>
     {

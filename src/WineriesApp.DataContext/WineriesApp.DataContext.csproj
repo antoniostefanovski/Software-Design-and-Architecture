@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WineriesApp.Services\WineriesApp.Services.csproj" />
+    <ProjectReference Include="..\WineriesApp.Common\WineriesApp.Common.csproj" />
   </ItemGroup>
 
 </Project>

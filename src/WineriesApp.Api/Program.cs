@@ -2,8 +2,8 @@ using CsvHelper.Configuration;
 using System.Globalization;
 using WineriesApp.DataContext;
 using WineriesApp.Api.Infrastructure.Startup;
-using WineriesApp.Services.Filters;
-using WineriesApp.Services.Pipes;
+using WineriesApp.Common.Filters;
+using WineriesApp.Common.Pipes;
 
 var builder = WebApplication.CreateBuilder(args);
 
