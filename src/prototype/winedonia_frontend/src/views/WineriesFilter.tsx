@@ -84,7 +84,7 @@ function WineriesFilter() {
             </div>
 
             <div>
-                <NavLink className={"btn-back"} to={"/"}>Назад кон почетна</NavLink>
+                <NavLink className={"btn btn-back"} to={"/"}>Назад кон почетна</NavLink>
             </div>
         </>
     )

@@ -8,16 +8,13 @@ type Props = {
 function Filtered({name}: Props) {
     return (
         <>
-        <NavLink to={"/wineryDetails"} className="filtered-main">
+        <NavLink to={{ pathname: '/wineryDetails' }} state={{ name: name }} className="filtered-main">
             <div className="filtered-card">
-                <div className="filtered-card-name">
-                    <h2>{name}</h2>
-                </div>
                 <div className="filtered-card-rating-div">
                     <img src={process.env.PUBLIC_URL + '/images/rating_img.jpg'}  className='filtered-card-rating'></img>
                 </div>
-                <div className="filtered-card-summary">
-                        <h3>You must taste our wine.</h3>
+                <div className="filtered-card-name">
+                    <h2>{name}</h2>
                 </div>
             </div>
         </NavLink>

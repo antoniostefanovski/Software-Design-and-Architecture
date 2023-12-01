@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={ <TopWineries/> } />
-        <Route path="/wineryDetails" element={ <WineryDetails/> } />
+        <Route path="/wineryDetails" element={ <WineryDetails /> } />
         <Route path="/wineries" element={ <WineriesFilter/> } />
         <Route path="/about" element={ <About /> } />
       </Routes>
