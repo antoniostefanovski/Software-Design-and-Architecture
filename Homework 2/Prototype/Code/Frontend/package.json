@@ -14,9 +14,12 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "typescript": "^5.3.2",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "typescript": "$typescript"
   },
   "scripts": {
     "start": "react-scripts start",
