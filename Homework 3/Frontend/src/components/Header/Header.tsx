@@ -1,0 +1,51 @@
+import { NavLink, useLocation } from 'react-router-dom';
+import logo from '../../assets/logo-nav.png';
+import star from '../../assets/Star.png';
+import mainBackground from '../../assets/1.png';
+import sideBackground from '../../assets/2.png';
+import './Header.scss';
+
+type Props = {
+    title: string | undefined,
+    hasRating: boolean | undefined,
+    rating: string | undefined
+}
+
+function Header({ title, hasRating, rating }: Props) {
+    const location = useLocation();
+
+    return (
+        <div className="header">
+            {
+                location.pathname == '/' ?
+                <img src={mainBackground} className='header-background' alt='background'/> :
+                <img src={sideBackground} className='header-background' alt='background'/>
+            }
+            <div className="header-navbar">
+                <div className="header-navbar-logo">
+                    <NavLink to='/'><img src={logo} className='header-navbar-logo-img' alt='logo'/></NavLink>
+                </div>
+                <div className="header-navbar-pages">
+                    <NavLink to='/wineries' className={({ isActive }) => [ isActive ? 'header-navbar-page-active' : '', 'header-navbar-page' ].join(" ")}>Винарии</NavLink>
+                    <NavLink to='/wines' className={({ isActive }) => [ isActive ? 'header-navbar-page-active' : '', 'header-navbar-page' ].join(" ")}>Вина</NavLink>
+                    <NavLink to='/locations' className={({ isActive }) => [ isActive ? 'header-navbar-page-active' : '', 'header-navbar-page' ].join(" ")}>Локации</NavLink>
+                    <NavLink to='/aboutus' className={({ isActive }) => [ isActive ? 'header-navbar-page-active' : '', 'header-navbar-page' ].join(" ")}>За нас</NavLink>
+                    <NavLink to='/contact' className={({ isActive }) => [ isActive ? 'header-navbar-page-active' : '', 'header-navbar-page' ].join(" ")}>Контакт</NavLink>
+                </div>
+            </div>
+            <div className={['header-title', location.pathname == '/' ? 'header-title-center' : '' ].join(" ")}>
+                {
+                    Boolean(hasRating) ? 
+                    <span className='header-title-rating'>
+                        <img src={star} className='header-title-rating-star' alt='star' />
+                        <span className='header-title-rating-text'>{rating}</span>
+                    </span> :
+                    null
+                }
+                <span className={'header-title-text'}>{title}</span>
+            </div>
+        </div>
+    )
+}
+
+export default Header
