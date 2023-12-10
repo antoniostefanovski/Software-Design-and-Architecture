@@ -3,6 +3,8 @@ import Header from '../../components/Header/Header'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { SelectChangeEvent } from '@mui/material';
 import './Main.scss';
+import WineryPreview from '../../components/WineryPreview/WineryPreview';
+import slika from '../../assets/Slika-primer.png';
 
 function Main() {
     const [locations, setLocations] = useState<string[]>([]);
@@ -21,6 +23,14 @@ function Main() {
                     submitCallback={undefined} 
                     inputCallback={undefined} 
                     classList={'main-search-bar'} />
+            </div>
+            <div className='main-top-wineries'>
+                <div className='main-top-wineries-title'>Топ 10 винарии</div>
+                <div className='main-top-wineries-links'>
+                    <WineryPreview img={slika} rating={5.0} name={'Винарија Вино'} description={"Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем пд псом Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лоредс."} />
+                    <WineryPreview img={slika} rating={5.0} name={'Винарија Вино'} description={"Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем пд псом Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лоредс."} />
+                    <WineryPreview img={slika} rating={5.0} name={'Винарија Вино'} description={"Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем пд псом Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лорем ипсом, Лоредс."} />
+                </div>
             </div>
         </div>
     )

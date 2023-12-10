@@ -1,0 +1,28 @@
+.locations-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+        &-card {
+            margin-right: 51px;
+        }
+    
+    &-card:first-of-type {
+        margin-bottom: 37px;
+    }
+
+    &-card img {
+        width: 279px;
+        height: 194px;
+    }
+
+    &-card p {
+        font-size: 18px;
+    }
+}
