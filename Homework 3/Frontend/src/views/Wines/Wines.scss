@@ -1,0 +1,113 @@
+.wines-container {
+    margin-top: 26px;
+    margin-left: 50px;
+    margin-bottom: 56px;
+    display: flex;
+
+    &-searchinput {
+        width: 261px;
+        border: 2px solid #C9C9C9;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+
+        & .search-bar-textbox {
+            width: 100%;
+            margin: 0 17px;
+
+            &-input {
+                width: 100%;
+            }
+        }
+    }
+
+    &-filter {
+        width: 261px;
+        margin-top: 18px;
+        border: 2px solid #C9C9C9;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+
+        &-rating {
+            &-box {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &-img {
+                    width: 11.34px;
+                    height: 7.75px;
+                    margin-right: 23px;
+                    cursor: pointer;
+                }
+
+                &-paragraph {
+                    margin-left: 23px;
+                    font-weight: 600;
+                }
+            }
+
+            &-checkbox {
+                width: 215px;
+                display: flex;
+                flex-direction: column;
+
+                &-item {
+                    display: flex;
+                    margin-left: 23px;
+                    margin-bottom: 13px;
+
+                    &-label {
+                        margin-left: 9px;
+                    }
+                }
+            }
+        }
+    }
+
+    &-filtered-content {
+        width: 100%;
+        height: 473px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-left: 38px;
+        margin-right: 78px;
+        overflow-y: scroll;
+
+        &-item {
+            width: 159px;
+            margin-bottom: 19px;
+            flex: 0 0 20%;
+            box-sizing: border-box;
+
+            &-img {
+                width: 159px;
+            }
+
+            &-paragraph {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #7a7a7a;
+            border-radius: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #7a7a7a;
+            border-radius: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #515151; 
+        }
+    }
+}

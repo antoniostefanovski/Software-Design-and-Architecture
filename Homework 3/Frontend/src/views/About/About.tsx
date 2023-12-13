@@ -1,7 +1,6 @@
 import React from 'react'
 import Content from '../../components/Content/Content'
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
 
 function About() {
 
@@ -17,7 +16,7 @@ let content = [
             <Header title={"За нас"} hasRating={undefined} rating={undefined} />
         </div>
         <div>
-            <Content content={content}/>
+            <Content content={content} isCustomStyled={undefined}/>
         </div>
     </div>
   )

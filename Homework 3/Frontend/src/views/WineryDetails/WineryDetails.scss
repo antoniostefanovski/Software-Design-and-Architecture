@@ -84,11 +84,169 @@
     }
 }
 
-.winery-details-container {
-    margin-bottom: 32px;
-}
+// .winery-details-container {
+//     margin-bottom: 32px;
+// }
 
 .leaflet-container {
     width: 600px;
     height: 450px;
+}
+
+.winery-details-container {
+    margin-bottom: 32.72px;
+
+    &-forwinery {
+        display: flex;
+        margin-left: 41px;
+
+        &-paragraph {
+            font-size: 32px;
+            font-weight: 600;
+        }
+    }
+
+    &-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-description {
+            width: 599px;
+            display: flex;
+            flex-direction: column;
+            text-align: justify;
+            font-size: 22px;
+            margin-left: 41px;
+        }
+
+        &-imageurl {
+            margin-right: 41px;
+
+            &-image {
+                width: 620px;
+                height: 391px;
+            }
+        }
+    }
+
+    &-location-and-contact {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-location {
+        margin-left: 41px;
+        
+        &-paragraph {
+            display: flex;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        &-map {
+            &-popup {
+                &-name {
+                    font-size: 19px;
+                }
+                &-rating {
+                    font-size: 11px;
+    
+                    &-img {
+                        width: 10.87px;
+                        height: 8.72px;
+                    }
+                }
+                &-address, &-phone, &-website {
+                    font-size: 11px;
+                }
+            }
+
+            &-popup .leaflet-popup-content-wrapper {
+                background-color: #41714E;
+                color: white;
+            }
+    
+            &-popup .leaflet-popup-content-wrapper a {
+                text-decoration: none;
+                color: white;
+            }
+    
+            &-popup .leaflet-popup-tip {
+                background-color: #3d6949;
+            }
+    
+            &-popup .leaflet-popup-close-button span {
+                color: white;
+            }
+        }
+    }
+
+    &-contact {
+        width: 620px;
+        margin-right: 41px;
+
+        &-paragraph {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        &-info {
+            font-size: 22px;
+            text-align: justify;
+
+            &-website-and-tel {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            &-comment-and-rating {
+                display: flex;
+                justify-content: space-evenly;
+                margin-top: 30px;
+            }
+
+            &-comment-div, &-rating-div {
+                &-button {
+                    width: 150px;
+                    padding: 10px;
+                    font-size: 14px;
+                    border-radius: 12px;
+                    border: none;
+                    background-color: #41714E;
+                    color: white;
+                    text-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+                }
+            }
+        }
+
+        &-website {
+            &-title {
+                font-size: 22px;
+                display: flex;
+            }
+
+            &-url {
+                font-size: 22px;
+                display: flex;
+                font-weight: bold;
+
+                &-link {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+
+        &-tel {
+            &-title, &-number {
+                font-size: 22px;
+                display: flex;
+            }
+
+            &-number {
+                font-weight: bold;
+            }
+        }
+    }
 }

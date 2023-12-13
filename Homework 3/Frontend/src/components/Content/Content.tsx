@@ -2,12 +2,13 @@ import React from 'react'
 import './Content.scss'
 
 type Props = {
-    content: string[]
+    content: string[],
+    isCustomStyled: string | undefined
 }
 
-function Content({ content } : Props) {
+function Content({ content, isCustomStyled } : Props) {
   return (
-    <div className='content-container'>
+    <div className={isCustomStyled == undefined ? 'content-container' : isCustomStyled}>
         {content.length > 0 
         &&
         content.map(c => <p>{c}</p>)

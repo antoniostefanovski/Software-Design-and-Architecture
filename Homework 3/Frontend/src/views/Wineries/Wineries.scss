@@ -1,0 +1,94 @@
+.wineries-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-inputbox {
+        margin-left: 50px;
+        margin-top: 32px;
+        margin-bottom: 29px;
+    }
+
+    &-inputbox-searchbar {
+        width: 583px;
+    }
+
+    &-map {
+        margin-right: 50px;
+
+        &-winery {
+            &-name {
+                font-size: 19px;
+            }
+            &-rating {
+                font-size: 11px;
+
+                &-img {
+                    width: 10.87px;
+                    height: 8.72px;
+                }
+            }
+            &-address, &-phone, &-website {
+                font-size: 11px;
+            }
+        }
+
+        &-popup .leaflet-popup-content-wrapper {
+            background-color: #41714E;
+            color: white;
+        }
+
+        &-popup .leaflet-popup-content-wrapper a {
+            text-decoration: none;
+            color: white;
+        }
+
+        &-popup .leaflet-popup-tip {
+            background-color: #3d6949;
+        }
+
+        &-popup .leaflet-popup-close-button span {
+            color: white;
+        }
+
+        &-container {
+            width: 633px;
+            height: 490px;
+        }
+    }
+
+    &-items {
+        width: 596px;
+        height: 413.28px;
+        display: flex;
+        margin-left: 50px;
+        margin-bottom: 32.72px;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #7a7a7a;
+            border-radius: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #7a7a7a;
+            border-radius: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #515151; 
+        }
+
+        &-empty {
+            text-align: left;
+            font-size: 19px;
+            font-weight: 600;
+        }
+    }
+}

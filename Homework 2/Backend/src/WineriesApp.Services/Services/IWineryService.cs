@@ -1,9 +1,14 @@
 ﻿using WineriesApp.DataContext.Models;
+using WineriesApp.Services.Models;
 
 namespace WineriesApp.Services.Services
 {
     public interface IWineryService
     {
-        public Task<List<Winery>> SearchWineriesByName(string? searchTerm, double[] ratings);
+        Task<List<Winery>> FilterWineries(WineriesFilter filter);
+
+        Task<List<Winery>> GetTopWineries();
+
+        Task<Winery?> GetWinery(Guid id);
     }
 }

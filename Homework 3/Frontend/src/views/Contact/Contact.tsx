@@ -2,7 +2,6 @@ import React from 'react'
 import './Contact.scss'
 import Header from '../../components/Header/Header'
 import './Contact.scss'
-import Footer from '../../components/Footer/Footer'
 
 function Contact() {
   return (

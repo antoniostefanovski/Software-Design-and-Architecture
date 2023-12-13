@@ -10,7 +10,6 @@ import ne from '../../assets/Negotino.png'
 import ge from '../../assets/Gevgelija.png'
 import sht from '../../assets/Stip.png'
 import { Link } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
 
 function Locations() {
   return (

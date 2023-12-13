@@ -1,21 +1,17 @@
 ﻿namespace WineriesApp.Services.Models
 {
-    public class WineriesInfo
+    public class WineriesInfo : BaseWineryInfo
     {
-        public string Name { get; set; } = string.Empty;
-
-        public string Latitude { get; set; } = string.Empty;
-        
-        public string Longitude { get; set; } = string.Empty;
-
         public string Address { get; set; } = string.Empty;
 
         public string Contact { get; set; } = string.Empty;
 
-        public double Rating { get; set; }
-
         public string Url { get; set; } = string.Empty;
+        
+        public string Description { get; set; } = string.Empty;
+        
+        public float Latitude { get; set; }
 
-        public string Municipality { get; set; } = string.Empty;
+        public float Longitude { get; set; }
     }
 }

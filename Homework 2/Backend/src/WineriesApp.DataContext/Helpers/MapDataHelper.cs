@@ -20,6 +20,7 @@ namespace WineriesApp.DataContext.Helpers
             pipe.AddFilter(new WebsiteFilter());
             pipe.AddFilter(new CoordinatesFilter());
             pipe.AddFilter(new PhoneFormatFilter());
+            pipe.AddFilter(new DescriptionFilter());
 
             using (var reader = new StreamReader("Resources/data_wineries.csv"))
             {
@@ -32,6 +33,7 @@ namespace WineriesApp.DataContext.Helpers
                     line = pipe.RunFilters(line ?? string.Empty);
 
                     var fields = line.Split(',');
+                    fields = fields.Select(f => f.Replace("$", ",")).ToArray();
 
                     var winery = new Winery
                     {
@@ -58,6 +60,8 @@ namespace WineriesApp.DataContext.Helpers
 
                     winery.Website = fields[6];
                     winery.Municipality = fields[7];
+                    winery.ImageUrl = fields[8];
+                    winery.Description = fields[9];
 
                     wineries.Add(winery);
 
