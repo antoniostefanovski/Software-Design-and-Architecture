@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WineriesApp.DataContext;
 
@@ -11,9 +12,10 @@ using WineriesApp.DataContext;
 namespace WineriesApp.DataContext.Migrations
 {
     [DbContext(typeof(WineriesDbContext))]
-    partial class WineriesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231215230851_Add_Review")]
+    partial class Add_Review
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

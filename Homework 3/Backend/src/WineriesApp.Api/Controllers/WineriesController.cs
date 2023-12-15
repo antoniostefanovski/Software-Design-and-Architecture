@@ -5,7 +5,7 @@ using WineriesApp.Services.Services;
 namespace WineriesApp.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/wineries")]
     public class WineriesController : ControllerBase
     {
         private readonly IWineryService wineryService;
@@ -15,22 +15,59 @@ namespace WineriesApp.Api.Controllers
             this.wineryService = wineryService;
         }
 
-        [HttpPost("wineries")]
-        public async Task<IEnumerable<WineriesInfo>> SearchWineries(string? searchTerm, params double[] ratings)
+        [HttpPost("filter/search")]
+        public async Task<IEnumerable<WinerySearchInfo>> GetWineriesBySearch([FromBody] WineriesFilter model)
         {
-            var wineries = await wineryService.SearchWineriesByName(searchTerm, ratings);
+            var wineries = await wineryService.FilterWineries(model);
 
-            return wineries.Select(w => new WineriesInfo
+            return wineries.Select(w => new WinerySearchInfo
             {
-                Address = w.Address,
-                Contact = w.PhoneNumber,
-                Longitude = w.Longitude.ToString(),
-                Latitude = w.Latitude.ToString(),
-                Municipality = w.Municipality,
+                Id = w.Id,
+                Latitude = w.Latitude,
+                Longitude = w.Longitude,
                 Name = w.Name,
-                Rating = w.Rating,
-                Url = w.Website
+                Rating = w.Rating
             });
+        }
+
+        [HttpGet("top-wineries")]
+        public async Task<IEnumerable<WineryPreviewInfo>> GetTopWineries()
+        {
+            var wineries = await wineryService.GetTopWineries();
+
+            return wineries.Select(w => new WineryPreviewInfo
+            {
+                Id = w.Id,
+                Name = w.Name,
+                Description = w.Description,
+                ImageUrl = w.ImageUrl,
+                Rating = w.Rating
+            });
+        }
+
+        [HttpGet("{id}/details")]
+        public async Task<WineriesInfo?> GetWineryDetails(Guid id)
+        {
+            var winery = await wineryService.GetWinery(id);
+
+            if (winery == null)
+            {
+                return null;
+            }
+
+            return new WineriesInfo
+            {
+                Id = id,
+                Name = winery.Name,
+                Description = winery.Description,
+                Address = winery.Address,
+                Contact = winery.PhoneNumber,
+                Rating = winery.Rating,
+                Url = winery.Website,
+                Longitude = winery.Longitude,
+                Latitude = winery.Latitude,
+                ImageUrl = winery.ImageUrl
+            };
         }
     }
 }

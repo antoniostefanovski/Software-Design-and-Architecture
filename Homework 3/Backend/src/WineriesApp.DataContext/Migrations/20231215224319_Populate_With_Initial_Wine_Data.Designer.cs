@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WineriesApp.DataContext;
 
@@ -11,9 +12,10 @@ using WineriesApp.DataContext;
 namespace WineriesApp.DataContext.Migrations
 {
     [DbContext(typeof(WineriesDbContext))]
-    partial class WineriesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231215224319_Populate_With_Initial_Wine_Data")]
+    partial class Populate_With_Initial_Wine_Data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,36 +37,6 @@ namespace WineriesApp.DataContext.Migrations
                     b.HasIndex("WineId");
 
                     b.ToTable("Wine_Winery");
-                });
-
-            modelBuilder.Entity("WineriesApp.DataContext.Models.Review", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("WineId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("WineryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WineId");
-
-                    b.HasIndex("WineryId");
-
-                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("WineriesApp.DataContext.Models.Wine", b =>
@@ -157,21 +129,6 @@ namespace WineriesApp.DataContext.Migrations
                         .HasForeignKey("WineryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WineriesApp.DataContext.Models.Review", b =>
-                {
-                    b.HasOne("WineriesApp.DataContext.Models.Wine", "Wine")
-                        .WithMany()
-                        .HasForeignKey("WineId");
-
-                    b.HasOne("WineriesApp.DataContext.Models.Winery", "Winery")
-                        .WithMany()
-                        .HasForeignKey("WineryId");
-
-                    b.Navigation("Wine");
-
-                    b.Navigation("Winery");
                 });
 #pragma warning restore 612, 618
         }
