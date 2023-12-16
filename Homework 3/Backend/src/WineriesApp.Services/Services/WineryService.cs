@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WineriesApp.DataContext;
 using WineriesApp.DataContext.Models;
-using WineriesApp.Services.Models;
+using WineriesApp.Services.Models.Filters;
 
 namespace WineriesApp.Services.Services
 {
@@ -16,7 +16,7 @@ namespace WineriesApp.Services.Services
 
         public Task<List<Winery>> GetTopWineries()
         {
-            return context.Wineries.OrderByDescending(w => w.Rating).Take(10).ToListAsync();
+            return context.Wineries.OrderByDescending(w => w.Rating).Take(12).ToListAsync();
         }
 
         public Task<List<Winery>> FilterWineries(WineriesFilter filter)
@@ -37,13 +37,17 @@ namespace WineriesApp.Services.Services
 
                 if (filter.Locations.Any())
                 {
-                    condition = condition && filter.Locations.Any(l => winery.Municipality == l);
+                    condition = condition && filter.Locations.Any(l => winery.Municipality?.Id == l);
                 }
 
                 return condition;
             }
 
-            return Task.FromResult(context.Wineries.Where(WhereQuery).ToList());
+            return Task.FromResult(context.Wineries
+                .Include(w => w.Municipality)
+                .Where(WhereQuery)
+                .Take(filter.MaxEntries ?? 20)
+                .ToList());
         }
 
         public Task<Winery?> GetWinery(Guid id)

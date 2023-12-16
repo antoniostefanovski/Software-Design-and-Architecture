@@ -5,7 +5,7 @@ Wine_Name,Winery_Name
 Вранец,Winery Popova kula
 Вранец,Royal Winery Queen Maria
 Вранец,Winery Brzanov
-Вранец,Family Winery Peškov
+Вранец,Family Winery Peskov
 Вранец,Winery Stobi
 Вранец,Winery Popov
 Вранец,S&S Winery
@@ -112,7 +112,7 @@ Wine_Name,Winery_Name
 Розе,Winery Popova kula
 Розе,Royal Winery Queen Maria
 Розе,Winery Brzanov
-Розе,Family Winery Peškov
+Розе,Family Winery Peskov
 Розе,Winery Stobi
 Розе,Winery Popov
 Розе,S&S Winery
@@ -195,7 +195,7 @@ Wine_Name,Winery_Name
 Темјаника,Winery Popova kula
 Темјаника,Royal Winery Queen Maria
 Темјаника,Winery Kuvin
-Темјаника,Winery Brzanov
+Темјаника,Family Winery Peskov
 Темјаника,Winery Stobi
 Темјаника,Winery Popov
 Темјаника,S&S Winery
@@ -206,7 +206,7 @@ Wine_Name,Winery_Name
 Темјаника,Winery Lazar
 Темјаника,Winery Skovin
 Темјаника,Winery Venec
-Темјаника,Winery Skovin
+Темјаника,Skovin AD Skopje Winery
 Темјаника,Imako Vino Winery
 Темјаника,GD Tikves Winery
 Темјаника,Ivanov Winery
@@ -217,6 +217,7 @@ Wine_Name,Winery_Name
 Жилавка,Winery Popova kula
 Жилавка,Winery Stobi
 Жилавка,Winery Eros
+Жилавка,Winery Venec
 Жилавка,Winery Jostela
 Жилавка,Wine Cellar Tikves AD Skopje
 Жилавка,Imako Vino Winery
@@ -227,7 +228,7 @@ Wine_Name,Winery_Name
 Грашевина,Winery Venec
 Грашевина,Wine Cellar Tikves AD Skopje
 Грашевина,Imako Vino Winery
-Грашевина,GD Tikves
+Грашевина,GD Tikves Winery
 Шампањско,Winery Chateau Sopot
 Шампањско,Winery Lazar
 Шампањско,Winery Kamnik

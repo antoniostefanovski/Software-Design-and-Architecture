@@ -84,13 +84,9 @@
     }
 }
 
-// .winery-details-container {
-//     margin-bottom: 32px;
-// }
-
 .leaflet-container {
     width: 600px;
-    height: 450px;
+    height: 490px;
 }
 
 .winery-details-container {
@@ -109,7 +105,6 @@
     &-content {
         display: flex;
         justify-content: space-between;
-        align-items: center;
 
         &-description {
             width: 599px;
@@ -118,6 +113,10 @@
             text-align: justify;
             font-size: 22px;
             margin-left: 41px;
+
+            & p:first-of-type {
+                margin-top: 0px;
+            }
         }
 
         &-imageurl {
@@ -160,6 +159,9 @@
                 &-address, &-phone, &-website {
                     font-size: 11px;
                 }
+                &-website {
+                    display: inline-block;
+                }
             }
 
             &-popup .leaflet-popup-content-wrapper {
@@ -170,6 +172,10 @@
             &-popup .leaflet-popup-content-wrapper a {
                 text-decoration: none;
                 color: white;
+                max-width: 301px;
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+                display: inline-block;
             }
     
             &-popup .leaflet-popup-tip {
@@ -234,6 +240,9 @@
                 &-link {
                     text-decoration: none;
                     color: black;
+                    max-width: 279px;
+                    text-overflow: ellipsis;
+                    overflow-x: hidden;
                 }
             }
         }

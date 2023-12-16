@@ -29,5 +29,7 @@ namespace WineriesApp.DataContext
         public DbSet<Wine> Wines { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
+        
+        public DbSet<Municipality> Municipalities { get; set; }
     }
 }

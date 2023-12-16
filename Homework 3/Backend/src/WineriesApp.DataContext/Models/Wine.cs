@@ -2,23 +2,24 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WineriesApp.DataContext.Enums;
 
-namespace WineriesApp.DataContext.Models;
-
-public class Wine
+namespace WineriesApp.DataContext.Models
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public class Wine
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     
-    public WineType Type { get; set; }
+        public WineType Type { get; set; }
     
-    public double Rating { get; set; }
+        public double Rating { get; set; }
 
-    public string ImageUrl { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
-    public virtual List<Winery> Wineries { get; set; } = new List<Winery>();
+        public virtual List<Winery> Wineries { get; set; } = new List<Winery>();
+    }
 }

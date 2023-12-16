@@ -34,11 +34,11 @@
     }
 
     &-filter {
-        width: 192px;
+        width: 157px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-right: 24px;
+        margin-right: 10px;
 
         &-separator {
             width: 1px;
@@ -47,7 +47,7 @@
         }
 
         &-input {
-            width: 168px;
+            width: 140px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -69,6 +69,12 @@
             & [class*="MuiInputBase-root-MuiInput-root-MuiSelect-root"] {
                 margin-top: 4px;
             }
+        }
+
+        &-star-icon {
+            width: 15.28px;
+            height: 14.72px;
+            margin-top: 5px;
         }
 
         &-submit {
@@ -96,6 +102,7 @@
 
 #search-form-control {
     position: relative;
+    width: 101px;
 }
 
 .search-form-control-placeholder {

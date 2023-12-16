@@ -17,6 +17,8 @@ namespace WineriesApp.Api.Infrastructure.Startup
             });
             
             services.AddScoped<IWineryService, WineryService>();
+            services.AddScoped<IMunicipalityService, MunicipalityService>();
+            
             return services;
         }
     }

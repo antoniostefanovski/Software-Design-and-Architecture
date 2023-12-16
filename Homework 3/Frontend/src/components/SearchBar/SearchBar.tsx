@@ -1,18 +1,24 @@
-import { ChangeEvent, MouseEventHandler, ReactNode, useState } from 'react';
+import { ChangeEvent, MouseEventHandler, ReactNode, useEffect, useState } from 'react';
 import searchIcon from '../../assets/icons8-search-120.png';
 import locationIcon from '../../assets/Union.png';
+import filterStarIcon from '../../assets/filterStar.png';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Theme, useTheme } from '@mui/material';
 import './SearchBar.scss';
+import { Municipality } from '../../models/Municipality';
 
 type Props = {
-    locations: string[],
+    searchTerm: string | undefined,
+    locations: Municipality[],
     placeholder: string | undefined,
     hasFilter: boolean | undefined,
+    hasRatingsFilter: boolean | undefined,
     hasButton: boolean | undefined,
-    filterVal: string[],
-    filterCallback: ((event: SelectChangeEvent<string[]>) => void) | undefined,
-    submitCallback: MouseEventHandler<HTMLButtonElement> | undefined,
-    inputCallback: Function | undefined,
+    locationsFilterVal: string[],
+    ratingsFilterVal: string[],
+    locationFilterCallback: ((event: SelectChangeEvent<string[]>) => void) | undefined,
+    ratingsFilterCallback: ((event: SelectChangeEvent<string[]>) => void) | undefined,
+    submitCallback: (() => void) | undefined,
+    inputCallback: ((change: string) => void) | undefined,
     classList: string
 }
 
@@ -38,42 +44,67 @@ function getStyles(location: string, filterVal: string[], theme: Theme) {
 }
 
 function SearchBar({
+    searchTerm,
     locations,
     placeholder,
     hasFilter,
+    hasRatingsFilter,
     hasButton,
-    filterVal,
-    filterCallback,
+    locationsFilterVal,
+    ratingsFilterVal,
+    locationFilterCallback,
+    ratingsFilterCallback,
     submitCallback,
     inputCallback,
     classList = ""
 } : Props) {
-    const [text, setText] = useState("");
-    const [isPlaceholderVisible, setPlaceholderVisible] = useState(true);
+    const [isLocationsPlaceholderVisible, setLocationsPlaceholderVisible] = useState(false);
+    const [isRatingsPlaceholderVisible, setRatingsPlaceholderVisible] = useState(false);
     const theme = useTheme();
+
+    useEffect(() => {
+        setLocationsPlaceholderVisible(locationsFilterVal.length <= 0);
+      }, [locationsFilterVal]);
+
+    useEffect(() => {
+        setRatingsPlaceholderVisible(ratingsFilterVal.length <= 0);
+    }, [ratingsFilterVal]);
     
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         let change = Boolean(e.target?.value) ? e.target?.value : "";
-        setText(change);
         
         if (Boolean(inputCallback) && inputCallback != null) {
             inputCallback(change);
         }
     }
 
-    const onSelectChange = (e: SelectChangeEvent<string[]>) => {
-        if (Boolean(filterCallback) && filterCallback != null) {
-            filterCallback(e);
+    const onLocationSelectChange = (e: SelectChangeEvent<string[]>) => {
+        if (Boolean(locationFilterCallback) && locationFilterCallback != null) {
+            locationFilterCallback(e);
         }
 
-        setPlaceholderVisible(e.target.value.length == 0);
+        setLocationsPlaceholderVisible(e.target.value.length == 0);
+    }
+
+    const onRatingsSelectChange = (e: SelectChangeEvent<string[]>) => {
+        if (Boolean(ratingsFilterCallback) && ratingsFilterCallback != null) {
+            ratingsFilterCallback(e);
+        }
+
+        setRatingsPlaceholderVisible(e.target.value.length == 0);
+    }
+
+    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key == 'Enter' && Boolean(submitCallback) && submitCallback != null) {
+            submitCallback();
+        }
     }
 
     return (
         <div className={['search-bar', classList].join(" ")}>
             <div className="search-bar-textbox">
                 <img className='search-bar-textbox-icon' src={searchIcon} alt='icon' />
-                <input maxLength={50} className='search-bar-textbox-input' onChange={onInputChange} type='text' value={text} placeholder={placeholder} />
+                <input onKeyDown={onKeyDown} maxLength={50} className='search-bar-textbox-input' onChange={onInputChange} type='text' value={searchTerm} placeholder={placeholder} />
             </div>
             <div className='search-bar-optionals-container'>
                 { hasFilter && <div className='search-bar-filter'>
@@ -81,23 +112,50 @@ function SearchBar({
                     <div className='search-bar-filter-input'>
                         <img src={locationIcon} alt='location' className='search-bar-filter-input-icon' />
                         <FormControl id="search-form-control" variant='standard' sx={{ m: 1, width: 300 }}>
-                            { isPlaceholderVisible && <span className='search-form-control-placeholder'>Локација</span> }
+                            { isLocationsPlaceholderVisible && <span className='search-form-control-placeholder'>Локација</span> }
                             <Select
                                 id="search-multiple-locations"
                                 multiple
-                                value={filterVal}
-                                onChange={onSelectChange}
+                                value={locationsFilterVal}
+                                onChange={onLocationSelectChange}
                                 sx={{fontSize:'small'}}
                                 disableUnderline={true}
                                 >
                                 {locations.map((location) => (
                                     <MenuItem
-                                        key={location}
-                                        value={location}
-                                        style={getStyles(location, filterVal, theme)}
+                                        key={location.id}
+                                        value={location.id}
+                                        style={getStyles(location.name ?? '', locationsFilterVal, theme)}>
+                                        {location.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </div>
+                </div>
+                }
+                { hasRatingsFilter && <div className='search-bar-filter'>
+                    <div className='search-bar-filter-separator'></div>
+                    <div className='search-bar-filter-input'>
+                        <img src={filterStarIcon} alt='location' className='search-bar-filter-star-icon' />
+                        <FormControl id="search-form-control" variant='standard' sx={{ m: 1, width: 300 }}>
+                            { isRatingsPlaceholderVisible && <span className='search-form-control-placeholder'>Рејтинг</span> }
+                            <Select
+                                id="search-multiple-ratings"
+                                multiple
+                                value={ratingsFilterVal}
+                                onChange={onRatingsSelectChange}
+                                sx={{fontSize:'small'}}
+                                disableUnderline={true}
+                                >
+                                {[1.0, 2.0, 3.0, 4.0, 5.0].map((rating, idx) => (
+                                    <MenuItem
+                                        key={idx}
+                                        value={rating.toString()}
+                                        style={getStyles(rating.toString(), ratingsFilterVal, theme)}
                                         
                                         >
-                                        {location}
+                                        {rating}
                                     </MenuItem>
                                 ))}
                             </Select>

@@ -8,7 +8,7 @@ import './Header.scss';
 type Props = {
     title: string | undefined,
     hasRating: boolean | undefined,
-    rating: string | undefined
+    rating: number | undefined
 }
 
 function Header({ title, hasRating, rating }: Props) {

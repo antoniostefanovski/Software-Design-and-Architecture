@@ -1,6 +1,7 @@
-namespace WineriesApp.Services.Models;
-
-public class WineryPreviewInfo : BaseWineryInfo
+namespace WineriesApp.Services.Models
 {
-    public string Description { get; set; } = string.Empty;
+    public class WineryPreviewInfo : BaseWineryInfo
+    {
+        public List<string> Description { get; set; } = new();
+    }
 }

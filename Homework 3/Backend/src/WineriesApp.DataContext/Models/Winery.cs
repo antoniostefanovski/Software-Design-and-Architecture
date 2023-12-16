@@ -30,10 +30,10 @@ namespace WineriesApp.DataContext.Models
 
         public string Website { get; set; } = string.Empty;
 
-        public string Municipality { get; set; } = string.Empty;
-
         public string ImageUrl { get; set; } = string.Empty;
 
-        public virtual List<Wine> Wines { get; set; } = new List<Wine>();
+        public virtual List<Wine> Wines { get; set; } = new ();
+
+        public virtual Municipality? Municipality { get; set; }
     }
 }

@@ -11,7 +11,7 @@ function Content({ content, isCustomStyled } : Props) {
     <div className={isCustomStyled == undefined ? 'content-container' : isCustomStyled}>
         {content.length > 0 
         &&
-        content.map(c => <p>{c}</p>)
+        content.map((c, idx) => <p key={idx}>{c}</p>)
         }
     </div>
   )

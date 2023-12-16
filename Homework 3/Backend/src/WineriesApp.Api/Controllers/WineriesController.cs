@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WineriesApp.Services.Models;
+using WineriesApp.Services.Models.Filters;
 using WineriesApp.Services.Services;
 
 namespace WineriesApp.Api.Controllers
@@ -26,7 +27,11 @@ namespace WineriesApp.Api.Controllers
                 Latitude = w.Latitude,
                 Longitude = w.Longitude,
                 Name = w.Name,
-                Rating = w.Rating
+                Rating = w.Rating,
+                Url = w.Website,
+                Contact = w.PhoneNumber,
+                Address = w.Address,
+                ImageUrl = w.ImageUrl
             });
         }
 
@@ -39,7 +44,7 @@ namespace WineriesApp.Api.Controllers
             {
                 Id = w.Id,
                 Name = w.Name,
-                Description = w.Description,
+                Description = w.Description.Split("^split^").ToList(),
                 ImageUrl = w.ImageUrl,
                 Rating = w.Rating
             });
@@ -59,7 +64,7 @@ namespace WineriesApp.Api.Controllers
             {
                 Id = id,
                 Name = winery.Name,
-                Description = winery.Description,
+                Description = winery.Description.Split("^split^").ToList(),
                 Address = winery.Address,
                 Contact = winery.PhoneNumber,
                 Rating = winery.Rating,

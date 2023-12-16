@@ -1,25 +1,34 @@
-import React, { MouseEventHandler } from 'react'
+import { MouseEventHandler, useEffect } from 'react'
 import './WineriesListItem.scss';
 import { Link } from 'react-router-dom';
 import locationIcon from '../../assets/union_black.png'
 import ratingIcon from '../../assets/Star.png'
+import { WinerySearchInfo } from '../../models/WinerySearchInfo';
 
 type Props = {
-  onMouseOver: MouseEventHandler<HTMLDivElement> | undefined
+  callback: ((data: WinerySearchInfo) => void) | undefined,
+  data: WinerySearchInfo
 }
 
-function WineriesListItem({ onMouseOver }: Props) {
+function WineriesListItem({ callback, data }: Props) {
+
+  const onMouseOver = () => {
+    if (Boolean(callback) && callback != null) {
+      callback(data);
+    }
+  }
+
   return (
-    <div onMouseEnter={Boolean(onMouseOver) ? onMouseOver : undefined} className="wineries-list-container">
+    <div onMouseEnter={() => onMouseOver()} className="wineries-list-container">
         <div className="wineries-list-container-card">
             <div className="wineries-list-container-card-left">
                 <img src={locationIcon} alt="location-icon" className='wineries-list-container-card-left-location'/>
                 <img src={ratingIcon} alt="rating-icon" className='wineries-list-container-card-left-ratingicon'/>
-                <span className='wineries-list-container-card-left-rating'>4.9</span>
-                <span className='wineries-list-container-card-left-winery'>Винарија Тиквеш</span>
+                <span className='wineries-list-container-card-left-rating'>{data.rating}</span>
+                <span className='wineries-list-container-card-left-winery'>{data.name}</span>
             </div>
             <div className="wineries-list-container-card-right">
-                <Link to="/winery"><button className="wineries-list-container-card-right-button">Видете повеќе</button></Link>
+                <Link to="/winery" state={{ wineryId: data.id }}><button className="wineries-list-container-card-right-button">Видете повеќе</button></Link>
             </div>
         </div>
     </div>

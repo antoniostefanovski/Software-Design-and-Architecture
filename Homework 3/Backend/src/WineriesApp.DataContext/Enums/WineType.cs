@@ -1,9 +1,10 @@
-namespace WineriesApp.DataContext.Enums;
-
-public enum WineType
+namespace WineriesApp.DataContext.Enums
 {
-    Red,
-    White,
-    Rose,
-    Sparkling
+    public enum WineType
+    {
+        Red,
+        White,
+        Rose,
+        Sparkling
+    }
 }

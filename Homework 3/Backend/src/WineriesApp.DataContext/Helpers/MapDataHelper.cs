@@ -13,10 +13,11 @@ namespace WineriesApp.DataContext.Helpers
 {
     public static class MapDataHelper
     {
-        public static IEnumerable<Winery> GetWineries()
+        public static IEnumerable<Winery> GetWineries(WineriesDbContext context)
         {
             var wineries = new List<Winery>();
             var pipe = new Pipe<string>();
+            var municipalities = context.Municipalities.ToList();
 
             pipe.AddFilter(new WebsiteFilter());
             pipe.AddFilter(new CoordinatesFilter());
@@ -60,8 +61,8 @@ namespace WineriesApp.DataContext.Helpers
                     }
 
                     winery.Website = fields[6];
-                    winery.Municipality = fields[7];
                     winery.ImageUrl = fields[8];
+                    winery.Municipality = municipalities.FirstOrDefault(m => m.Name == fields[7]);
                     winery.Description = fields[9];
 
                     wineries.Add(winery);
@@ -141,6 +142,26 @@ namespace WineriesApp.DataContext.Helpers
                         result[fields[0]].Add(fields[1]);
                     }
 
+                    line = reader.ReadLine();
+                }
+            }
+
+            return result;
+        }
+
+        public static List<Municipality> GetMunicipalities()
+        {
+            var result = new List<Municipality>();
+            
+            using (var reader = new StreamReader("Resources/data_municipalities.csv"))
+            {
+                reader.ReadLine(); // Skip Headers
+
+                var line = reader.ReadLine();
+
+                while (line != null)
+                {
+                    result.Add(new Municipality() { Name = line });
                     line = reader.ReadLine();
                 }
             }

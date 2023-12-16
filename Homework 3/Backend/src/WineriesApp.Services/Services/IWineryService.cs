@@ -1,5 +1,6 @@
 ﻿using WineriesApp.DataContext.Models;
 using WineriesApp.Services.Models;
+using WineriesApp.Services.Models.Filters;
 
 namespace WineriesApp.Services.Services
 {

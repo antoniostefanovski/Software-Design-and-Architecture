@@ -17,7 +17,20 @@ function Wines() {
             </div>
             <div className="wines-container">
                 <div className="wines-container-input">
-                    <SearchBar locations={[]} placeholder={'Име на вино'} hasFilter={undefined} hasButton={undefined} filterVal={[]} filterCallback={undefined} submitCallback={undefined} inputCallback={undefined} classList={'wines-container-searchinput'}/>
+                    <SearchBar
+                        searchTerm={''}
+                        locations={[]} 
+                        placeholder={'Име на вино'} 
+                        hasFilter={undefined} 
+                        hasButton={undefined} 
+                        locationsFilterVal={[]} 
+                        locationFilterCallback={undefined} 
+                        submitCallback={undefined} 
+                        inputCallback={undefined} 
+                        classList={'wines-container-searchinput'} 
+                        hasRatingsFilter={false} 
+                        ratingsFilterVal={[]} 
+                        ratingsFilterCallback={undefined}/>
                     <div className="wines-container-filter">
                         <div className="wines-container-filter-rating-box" onClick={() => setRatingsExpanded(!ratingsExpanded)}>
                             <p className='wines-container-filter-rating-box-paragraph'>Рејтинг</p>

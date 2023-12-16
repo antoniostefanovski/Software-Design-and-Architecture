@@ -1,19 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using WineriesApp.DataContext.Helpers;
-using WineriesApp.Common.Filters;
-using WineriesApp.Common.Pipes;
 
 #nullable disable
 
 namespace WineriesApp.DataContext.Migrations
 {
-    public partial class Populate_With_Initial_Data : Migration
+    public partial class Populate_With_Initial_Winery_Data : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             using var dbContext = DbContextHelper.GetDbContext();
-            var wineries = MapDataHelper.GetWineries();
+            var wineries = MapDataHelper.GetWineries(dbContext);
 
             if (!wineries.Any())
             {

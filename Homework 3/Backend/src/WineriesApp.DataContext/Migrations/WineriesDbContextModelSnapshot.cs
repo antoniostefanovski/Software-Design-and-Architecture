@@ -37,6 +37,21 @@ namespace WineriesApp.DataContext.Migrations
                     b.ToTable("Wine_Winery");
                 });
 
+            modelBuilder.Entity("WineriesApp.DataContext.Models.Municipality", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Municipality");
+                });
+
             modelBuilder.Entity("WineriesApp.DataContext.Models.Review", b =>
                 {
                     b.Property<Guid>("Id")
@@ -120,9 +135,8 @@ namespace WineriesApp.DataContext.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("real");
 
-                    b.Property<string>("Municipality")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("MunicipalityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -140,6 +154,8 @@ namespace WineriesApp.DataContext.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MunicipalityId");
 
                     b.ToTable("Winery");
                 });
@@ -172,6 +188,20 @@ namespace WineriesApp.DataContext.Migrations
                     b.Navigation("Wine");
 
                     b.Navigation("Winery");
+                });
+
+            modelBuilder.Entity("WineriesApp.DataContext.Models.Winery", b =>
+                {
+                    b.HasOne("WineriesApp.DataContext.Models.Municipality", "Municipality")
+                        .WithMany("Wineries")
+                        .HasForeignKey("MunicipalityId");
+
+                    b.Navigation("Municipality");
+                });
+
+            modelBuilder.Entity("WineriesApp.DataContext.Models.Municipality", b =>
+                {
+                    b.Navigation("Wineries");
                 });
 #pragma warning restore 612, 618
         }

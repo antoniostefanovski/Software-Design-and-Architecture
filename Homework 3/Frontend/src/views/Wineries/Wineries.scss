@@ -31,6 +31,10 @@
             &-address, &-phone, &-website {
                 font-size: 11px;
             }
+
+            &-website {
+                display: inline-block;
+            }
         }
 
         &-popup .leaflet-popup-content-wrapper {
@@ -41,6 +45,10 @@
         &-popup .leaflet-popup-content-wrapper a {
             text-decoration: none;
             color: white;
+            display: inline-block;
+            max-width: 301px;
+            text-overflow: ellipsis;
+            overflow-x: hidden;
         }
 
         &-popup .leaflet-popup-tip {
