@@ -1,11 +1,10 @@
-version: '1.0'
+version: '3.3'
 
 services:
   sql-db:
     container_name: sql.db
     hostname: sql-db
     image: mcr.microsoft.com/mssql/server:2022-latest
-    pull_policy: missing
     environment:
       "ACCEPT_EULA": "Y"
       "MSSQL_SA_PASSWORD": ${MSSQL_SA_PASSWORD}
