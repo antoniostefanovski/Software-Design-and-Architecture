@@ -8,6 +8,9 @@ import Footer from './components/Footer/Footer';
 import Wines from './views/Wines/Wines';
 import Wineries from './views/Wineries/Wineries';
 import WineryDetailsPage from './views/WineryDetails/WineryDetails';
+import Privacy from './views/Privacy/Privacy';
+import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
+import FrequentlyAskedQuestions from './views/FrequentlyAskedQuestions/FrequentlyAskedQuestions';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/aboutus" element={ <About /> } />
         <Route path="/wines" element={ <Wines /> } />
         <Route path="/winery" element={ <WineryDetailsPage /> } />
+        <Route path="/privacy" element={ <Privacy /> } />
+        <Route path="/termsandconditions" element={ <TermsAndConditions /> } />
+        <Route path="/faq" element={ <FrequentlyAskedQuestions /> } />
       </Routes>
       <Footer />
     </div>

@@ -33,7 +33,7 @@ function Footer() {
                     <Link to='/contact' className='footer-links-item'>Контактирајте нé</Link>
                     <Link to='/termsandconditions' className='footer-links-item'>Политика за користење</Link>
                     <Link to='/privacy' className='footer-links-item'>Приватност</Link>
-                    <Link to='/qna' className='footer-links-item'>Прашања и одговори</Link>
+                    <Link to='/faq' className='footer-links-item'>Прашања и одговори</Link>
                 </div>
             </div>
         </div>

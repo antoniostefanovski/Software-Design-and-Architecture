@@ -1,0 +1,11 @@
+.privacy-container {
+    &-paragraph {
+        font-size: 22px;
+        text-align: left;
+        margin-left: 50px;
+
+        &-link {
+            text-decoration: none;
+        }
+    }
+}
