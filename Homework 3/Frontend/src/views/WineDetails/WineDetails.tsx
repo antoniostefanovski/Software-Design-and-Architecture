@@ -72,7 +72,7 @@ function WineDetailsPage() {
     }, []);
 
     return (
-        <div>
+        <div className="wine-details-wrapper">
             <div className="wine-details-header">
                 <Header title={details?.name} hasRating={true} rating={details?.rating}/>
             </div>
