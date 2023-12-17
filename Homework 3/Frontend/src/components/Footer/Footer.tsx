@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/Logo.png';
 import './Footer.scss';
+import { HashLink } from 'react-router-hash-link';
 
 function Footer() {
 
@@ -23,17 +24,17 @@ function Footer() {
             <div className='footer-links'>
                 <div className='footer-links-menu'>
                     <span className='footer-links-title'>Мени</span>
-                    <Link to='/wineries' className='footer-links-item'>Винарии</Link>
-                    <Link to='/wines' className='footer-links-item'>Вина</Link>
-                    <Link to='/locations' className='footer-links-item'>Локации</Link>
-                    <Link to='/aboutus' className='footer-links-item'>За нас</Link>
+                    <HashLink to='/wineries#' className='footer-links-item'>Винарии</HashLink>
+                    <HashLink to='/wines#' className='footer-links-item'>Вина</HashLink>
+                    <HashLink to='/locations#' className='footer-links-item'>Локации</HashLink>
+                    <HashLink to='/aboutus#' className='footer-links-item'>За нас</HashLink>
                 </div>
                 <div className='footer-links-support'>
                     <span className='footer-links-title'>Поддршка</span>
-                    <Link to='/contact' className='footer-links-item'>Контактирајте нé</Link>
-                    <Link to='/termsandconditions' className='footer-links-item'>Политика за користење</Link>
-                    <Link to='/privacy' className='footer-links-item'>Приватност</Link>
-                    <Link to='/faq' className='footer-links-item'>Прашања и одговори</Link>
+                    <HashLink to='/contact#' className='footer-links-item'>Контактирајте нé</HashLink>
+                    <HashLink to='/termsandconditions#' className='footer-links-item'>Политика за користење</HashLink>
+                    <HashLink to='/privacy#' className='footer-links-item'>Приватност</HashLink>
+                    <HashLink to='/faq#' className='footer-links-item'>Прашања и одговори</HashLink>
                 </div>
             </div>
         </div>

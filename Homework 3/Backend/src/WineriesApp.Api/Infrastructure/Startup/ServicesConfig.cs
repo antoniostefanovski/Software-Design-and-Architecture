@@ -18,6 +18,8 @@ namespace WineriesApp.Api.Infrastructure.Startup
             
             services.AddScoped<IWineryService, WineryService>();
             services.AddScoped<IMunicipalityService, MunicipalityService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IWineService, WineService>();
             
             return services;
         }

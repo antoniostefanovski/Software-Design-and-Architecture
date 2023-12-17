@@ -191,6 +191,11 @@
     &-contact {
         width: 620px;
         margin-right: 41px;
+        margin-top: 157px;
+
+        &-add-review-active {
+            margin-top: 0;
+        }
 
         &-paragraph {
             font-size: 32px;

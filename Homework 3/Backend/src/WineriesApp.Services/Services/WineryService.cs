@@ -47,6 +47,7 @@ namespace WineriesApp.Services.Services
                 .Include(w => w.Municipality)
                 .Where(WhereQuery)
                 .Take(filter.MaxEntries ?? 20)
+                .OrderByDescending(w => w.Rating)
                 .ToList());
         }
 

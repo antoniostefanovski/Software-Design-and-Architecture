@@ -11,6 +11,7 @@ import WineryDetailsPage from './views/WineryDetails/WineryDetails';
 import Privacy from './views/Privacy/Privacy';
 import TermsAndConditions from './views/TermsAndConditions/TermsAndConditions';
 import FrequentlyAskedQuestions from './views/FrequentlyAskedQuestions/FrequentlyAskedQuestions';
+import WineDetailsPage from './views/WineDetails/WineDetails';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/aboutus" element={ <About /> } />
         <Route path="/wines" element={ <Wines /> } />
         <Route path="/winery" element={ <WineryDetailsPage /> } />
+        <Route path="/wine" element={ <WineDetailsPage /> } />
         <Route path="/privacy" element={ <Privacy /> } />
         <Route path="/termsandconditions" element={ <TermsAndConditions /> } />
         <Route path="/faq" element={ <FrequentlyAskedQuestions /> } />

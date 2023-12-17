@@ -12,8 +12,8 @@ using WineriesApp.DataContext;
 namespace WineriesApp.DataContext.Migrations
 {
     [DbContext(typeof(WineriesDbContext))]
-    [Migration("20231216172950_Populate_With_Initial_Wine_Data")]
-    partial class Populate_With_Initial_Wine_Data
+    [Migration("20231217192431_Add_Wine_MainImageUrl")]
+    partial class Add_Wine_MainImageUrl
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,11 +94,15 @@ namespace WineriesApp.DataContext.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("MainImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreviewImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

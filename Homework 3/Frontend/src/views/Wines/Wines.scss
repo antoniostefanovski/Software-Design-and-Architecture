@@ -74,12 +74,17 @@
         justify-content: space-between;
         margin-left: 38px;
         margin-right: 78px;
-        overflow-y: scroll;
+        overflow-y: auto;
+
+        &-container {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+        }
 
         &-item {
             width: 159px;
             margin-bottom: 19px;
-            flex: 0 0 20%;
             box-sizing: border-box;
 
             &-img {
@@ -89,6 +94,10 @@
             &-paragraph {
                 display: flex;
                 flex-direction: column;
+            }
+
+            &:not(:first-of-type) {
+                margin-left: 108px;
             }
         }
 

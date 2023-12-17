@@ -79,7 +79,7 @@ namespace WineriesApp.DataContext.Helpers
             var wines = new List<Wine>();
             var pipe = new Pipe<string>();
 
-            pipe.AddFilter(new DescriptionFilter(",", 4));
+            pipe.AddFilter(new DescriptionFilter(",", 5));
 
             using (var reader = new StreamReader("Resources/data_wines.csv"))
             {
@@ -105,8 +105,9 @@ namespace WineriesApp.DataContext.Helpers
                         wine.Rating = rating;
                     }
 
-                    wine.ImageUrl = fields[3];
-                    wine.Description = fields[4];
+                    wine.PreviewImageUrl = fields[3];
+                    wine.MainImageUrl = fields[4];
+                    wine.Description = fields[5];
                     
                     wines.Add(wine);
 

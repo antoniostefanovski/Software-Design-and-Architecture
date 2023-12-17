@@ -1,4 +1,5 @@
 ﻿using WineriesApp.DataContext.Enums;
+using WineriesApp.DataContext.Models;
 
 namespace WineriesApp.Services.Models
 {
@@ -14,6 +15,8 @@ namespace WineriesApp.Services.Models
 
         public string ImageUrl { get; set; } = string.Empty;
 
-        public string Description { get; set; } = string.Empty;
+        public List<string> Description { get; set; } = new();
+
+        public List<WineryPreviewInfo> Wineries { get; set; } = new();
     }
 }

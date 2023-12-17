@@ -43,6 +43,6 @@ public class WineService : IWineService
 
     public Task<Wine?> GetWine(Guid id)
     {
-        return context.Wines.FirstOrDefaultAsync(w => w.Id == id);
+        return context.Wines.Include(w => w.Wineries).FirstOrDefaultAsync(w => w.Id == id);
     }
 }

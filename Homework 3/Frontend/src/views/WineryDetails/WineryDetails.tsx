@@ -11,6 +11,11 @@ import { useEffect, useState } from 'react';
 import { WineryService } from '../../services/WineryService';
 import { WineryDetails } from '../../models/WineryDetails';
 import { UrlHelper } from '../../helpers/UrlHelper';
+import AddReview from '../../components/AddReview/AddReview';
+import { ReviewService } from '../../services/ReviewService';
+import { ReviewEntityType } from '../../enums/ReviewEntityType';
+import { ReviewInfo } from '../../models/ReviewInfo';
+import Review from '../../components/Review/Review';
 
 Leaflet.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
@@ -21,18 +26,38 @@ Leaflet.Icon.Default.mergeOptions({
 function WineryDetailsPage() {
 
     const wineryService = new WineryService();
+    const reviewService = new ReviewService();
+
     const location = useLocation();
     const { wineryId } = location.state;
 
     const [details, setDetails] = useState<WineryDetails | null>(null);
+    const [reviews, setReviews] = useState<ReviewInfo[]>([]);
     const [marker, setMarker] = useState<Leaflet.Marker<any>|null>(null);
+
+    const [showAddReview, setShowAddReview] = useState(false);
     
     const getData = async () => {
+        if (!Boolean(wineryId)) {
+            return;
+        }
+
         const details = await wineryService.getWineryDetails(wineryId);
+        const reviews = await reviewService.getReviews(ReviewEntityType.Winery, wineryId);
 
         if (Boolean(details)) {
             setDetails(details);
         }
+
+        if (Boolean(reviews)) {
+            setReviews(reviews ?? []);
+        }
+    }
+
+    const submitReview = async (rating: number, comment: string) => {
+        await reviewService.addReview(rating, comment, ReviewEntityType.Winery, details?.id ?? '');
+        setShowAddReview(!showAddReview);
+        getData();
     }
 
     useEffect(() => {
@@ -41,7 +66,7 @@ function WineryDetailsPage() {
 
     useEffect(() => {
         if (marker) {
-            marker.openPopup()
+            marker.openPopup();
         }
     }, [marker]);
 
@@ -92,7 +117,7 @@ function WineryDetailsPage() {
                         </div>
                     </div>
 
-                    <div className="winery-details-container-contact">
+                    <div className={`winery-details-container-contact ${showAddReview ? 'winery-details-container-contact-add-review-active' : ''}`}>
                         <p className='winery-details-container-contact-paragraph'>Контакт</p>
                         <p className='winery-details-container-contact-info'>Доколку сте заинтересирани и сакате да дознаете повеќе за винаријата може да ја посетете нивната страница или да ги исконтактирате на нивниот телефонски број.</p>
                         <div className="winery-details-container-contact-info-website-and-tel">
@@ -106,16 +131,19 @@ function WineryDetailsPage() {
                             </div>
                         </div>
                         <div className="winery-details-container-contact-info-comment-and-rating">
-                            <div className="winery-details-container-contact-info-comment-div">
-                                <Link to="/"><button className="winery-details-container-contact-info-comment-div-button">Оставете коментар</button></Link>
-                            </div>
-
-                            <div className="winery-details-container-contact-info-rating-div">
-                                <Link to="/"><button className="winery-details-container-contact-info-rating-div-button">Оцени винарија</button></Link>
-                            </div>
+                            { !showAddReview && <div className="winery-details-container-contact-info-rating-div">
+                                <button onClick={() => setShowAddReview(!showAddReview)} className="winery-details-container-contact-info-rating-div-button">Оцени винарија</button>
+                            </div> }
+                            { showAddReview && <AddReview addReviewCallback={submitReview} classList={undefined} />}
                         </div>
                     </div>
                 </div>
+                { reviews.length > 0 && <div className="wine-details-container-forwine">
+                    <p className='wine-details-container-forwine-paragraph'>Рејтинзи</p>
+                </div> }
+                {
+                    reviews.length > 0 && reviews.map((r: ReviewInfo, idx) => <Review key={idx} data={r}/>)
+                }
             </div>
         </div>
     )

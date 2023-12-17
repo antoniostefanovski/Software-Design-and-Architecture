@@ -16,7 +16,9 @@ namespace WineriesApp.DataContext.Models
     
         public double Rating { get; set; }
 
-        public string ImageUrl { get; set; } = string.Empty;
+        public string PreviewImageUrl { get; set; } = string.Empty;
+
+        public string MainImageUrl { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
 
