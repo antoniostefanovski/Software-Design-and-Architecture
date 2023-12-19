@@ -35,6 +35,14 @@
             &-rating, &-winery {
                 font-size: 19px;
             }
+
+            &-winery {
+                width: 250px;
+                overflow-x: clip;
+                text-wrap: nowrap;
+                text-overflow: ellipsis;
+                text-align: left;
+            }
         }
 
         &-right {

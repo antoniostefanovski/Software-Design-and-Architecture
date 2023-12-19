@@ -101,22 +101,82 @@
             }
         }
 
-        &::-webkit-scrollbar {
+        &::-webkit-scrollbar:vertical,
+        &::-webkit-scrollbar:horizontal {
             width: 5px;
         }
 
-        &::-webkit-scrollbar-track {
+        &::-webkit-scrollbar-track:vertical,
+        &::-webkit-scrollbar-track:horizontal {
             box-shadow: inset 0 0 5px #7a7a7a;
             border-radius: 12px;
         }
 
-        &::-webkit-scrollbar-thumb {
+        &::-webkit-scrollbar-thumb:vertical,
+        &::-webkit-scrollbar-thumb:horizontal {
             background: #7a7a7a;
             border-radius: 12px;
         }
 
-        &::-webkit-scrollbar-thumb:hover {
+        &::-webkit-scrollbar-thumb:vertical:hover,
+        &::-webkit-scrollbar-thumb:horizontal:hover {
             background: #515151; 
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .wines-container {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+
+        &-input {
+            margin-bottom: 42px;
+        }
+
+        &-searchinput,
+        &-filter {
+            width: 467px;
+        }
+
+        &-filtered-content {
+            width: 467px;
+            margin: 0;
+
+            &-container {
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .wines-container {
+        &-searchinput,
+        &-filter {
+            width: 301px;
+        }
+
+        &-filtered-content {
+            width: 400px;
+
+            &-item:not(:first-of-type) {
+                margin-left: 34px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .wines-container {
+
+        &-filtered-content {
+            width: 340px;
+
+            &-item:not(:first-of-type) {
+                margin-left: 0;
+            }
         }
     }
 }

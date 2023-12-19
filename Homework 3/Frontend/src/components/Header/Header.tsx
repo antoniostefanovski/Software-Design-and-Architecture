@@ -59,7 +59,7 @@ function Header({ title, hasRating, rating }: Props) {
                         <NavLink to='/contact' className={({ isActive }) => [ isActive ? 'header-navbar-page-active' : '', 'header-navbar-page' ].join(" ")}>Контакт</NavLink>
                     </div>
                 </div>
-                <div className={['header-title', location.pathname == '/' ? 'header-title-center' : '' ].join(" ")}>
+                <div className={['header-title', location.pathname == '/' ? 'header-title-center' : 'header-side-page' ].join(" ")}>
                     {
                         Boolean(hasRating) ? 
                         <span className='header-title-rating'>

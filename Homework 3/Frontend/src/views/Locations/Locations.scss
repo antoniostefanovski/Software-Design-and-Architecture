@@ -27,7 +27,21 @@
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (min-width: 700px) and (max-width: 1330px) {
+    .locations-rows-container {
+        display: flex;
+    }
+
+    .locations-container {
+        flex-direction: column;
+
+        &-card {
+            margin-right: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 699px) {
     .locations-container {
         flex-direction: column;
 

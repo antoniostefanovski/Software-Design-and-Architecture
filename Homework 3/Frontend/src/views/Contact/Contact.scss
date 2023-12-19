@@ -109,3 +109,69 @@
         }
     }
 }
+
+@media screen and (min-width: 540px) and (max-width: 740px) {
+    .contact-container-formgroup-part-inside input {
+        width: 188px;
+    }
+
+    .contact-container-formgroup-email input {
+        width: 433px;
+    }
+
+    .contact-container-formgroup-msg textarea {
+        width: 433px;
+    }
+}
+
+@media screen and (max-width: 539px) {
+
+    .contact-container {
+        &-paragraph {
+            margin: 0 50px;
+            text-align: center;
+        }
+
+        &-formgroup {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &-submit {
+                margin-left: 0;
+            }
+
+            &-msg {
+                margin-left: 0;
+
+                & textarea {
+                    width: 225px;
+                }
+            }
+
+            &-email {
+                margin-left: 0;
+
+                & input {
+                    width: 225px;
+                }
+            }
+
+            &-part {
+                display: flex;
+                margin-left: 0;
+                flex-direction: column;
+
+                &-inside {
+                    margin-top: 10px;
+                    margin-right: 0;
+
+                    & input {
+                        width: 225px;
+                    }
+                }
+            }
+        }
+    }
+}

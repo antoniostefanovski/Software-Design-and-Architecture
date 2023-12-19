@@ -23,9 +23,18 @@ Leaflet.Icon.Default.mergeOptions({
 
 function Wineries() {
 
+    const getCurrentDimension = () => {
+        return {
+              width: window.innerWidth,
+              height: window.innerHeight
+        }
+    }
+
     const wineryService = new WineryService();
     const municipalityService = new MunicipalityService();
     const location = useLocation();
+
+    const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
     const [filterLocations, setFilterLocations] = useState<string[]>([]);
     const [filterRatings, setFilterRatings] = useState<string[]>([]);
@@ -38,6 +47,18 @@ function Wineries() {
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
     const [searchTerm, setSearchTerm] = useState('');
+
+    
+    useEffect(() => {
+        const updateDimension = () => {
+          setScreenSize(getCurrentDimension())
+        }
+        window.addEventListener('resize', updateDimension);
+        
+        return(() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+      }, [screenSize]);
 
     const getData = async () => {
         const wineries = await wineryService.filterWineries();
@@ -137,7 +158,7 @@ function Wineries() {
                             searchTerm={searchTerm}
                             locations={municipalities}
                             placeholder={'Име на винарија'}
-                            hasFilter={true}
+                            hasFilter={screenSize.width > 450}
                             hasButton={false}
                             locationsFilterVal={filterLocations}
                             locationFilterCallback={(e: SelectChangeEvent<string[]>) => onLocationsChange(e)}

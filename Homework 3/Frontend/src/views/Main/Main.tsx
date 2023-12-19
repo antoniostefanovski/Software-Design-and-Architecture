@@ -12,14 +12,34 @@ import { WineryPreviewInfo } from '../../models/WineryPreviewInfo';
 import { WineryService } from '../../services/WineryService';
 
 function Main() {
+    const getCurrentDimension = () => {
+        return {
+              width: window.innerWidth,
+              height: window.innerHeight
+        }
+    }
+
     const navigate = useNavigate();
     const municipalityService = new MunicipalityService();
     const wineryService = new WineryService();
+
+    const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
     const [locations, setLocations] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
     const [topWineries, setTopWineries] = useState<WineryPreviewInfo[]>([]);
+
+    useEffect(() => {
+        const updateDimension = () => {
+          setScreenSize(getCurrentDimension())
+        }
+        window.addEventListener('resize', updateDimension);
+        
+        return(() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+      }, [screenSize])
 
     const getData = async () => {
         const municipalities = await municipalityService.getMunicipalities();
@@ -51,8 +71,8 @@ function Main() {
         if (!Boolean(topWineries) || topWineries.length == 0) return null;
         let wineryContainers = [];
 
-        for (let i = 0; i < topWineries.length; i += 3) {
-            let items = topWineries.slice(i, i + 3);
+        for (let i = 0; i < topWineries.length; i += (screenSize.width < 801 ? 1 : 3)) {
+            let items = topWineries.slice(i, i + (screenSize.width < 801 ? 1 : 3));
             let wineries = items.map((w: WineryPreviewInfo, idx) => <WineryPreview key={idx} id={w.id ?? ''} img={w.imageUrl ?? ''} rating={w.rating ?? 5} name={w.name ?? ''} description={w.description?.join() ?? ''} />);
 
             let div = <div key={i} className='main-top-wineries-links-container'>
@@ -77,7 +97,7 @@ function Main() {
                     searchTerm={searchTerm}
                     locations={municipalities}
                     placeholder={'Каде би сакале да одите?'}
-                    hasFilter={true}
+                    hasFilter={screenSize.width > 400}
                     hasButton={true}
                     locationsFilterVal={locations}
                     locationFilterCallback={onLocationsChange}

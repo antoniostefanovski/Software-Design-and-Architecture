@@ -100,3 +100,149 @@
         }
     }
 }
+
+@media screen and (min-width: 1130px) and (max-width: 1300px) {
+
+    .wineries-container {
+        & .leaflet-container {
+            width: 500px !important;
+        }
+    
+        & &-inputbox-searchbar {
+            width: 500px !important;
+        }
+    
+        & &-items {
+            width: 500px !important;
+        }
+    
+        & .wineries-list-container {
+            width: 500px !important;
+        }
+    
+        & .wineries-list-container-card-left-winery {
+            width: 200px;
+        }
+    }
+}
+
+@media screen and (max-width: 1130px) {
+
+    .wineries-container {
+        & .leaflet-container {
+            width: 400px !important;
+        }
+    
+        & &-inputbox-searchbar {
+            width: 400px !important;
+        }
+    
+        & &-items {
+            width: 400px !important;
+        }
+    
+        & .wineries-list-container {
+            width: 400px !important;
+        }
+    
+        & .wineries-list-container-card-left .wineries-list-container-card-left-winery {
+            width: 99px;
+            overflow-x: clip;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
+    
+        & .wineries-list-container-card-left .wineries-list-container-card-left-rating {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .wineries-container {
+        flex-direction: column;
+
+        & .leaflet-container {
+            width: 700px !important;
+        }
+
+        & &-inputbox-searchbar {
+            width: 700px !important;
+        }
+    
+        & &-items {
+            width: 700px !important;
+        }
+
+        & .wineries-list-container {
+            width: 700px !important;
+        }
+    
+        & .wineries-list-container-card-left .wineries-list-container-card-left-winery {
+            width: 200px;
+        }
+    
+        & &-inputbox,
+        & &-items {
+            margin-left: 0;
+        }
+    
+        & &-map {
+            margin-right: 0;
+            margin-bottom: 32px;
+        }
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .wineries-container {
+        flex-direction: column;
+
+        & .leaflet-container {
+            width: 400px !important;
+        }
+    
+        & &-inputbox-searchbar {
+            width: 400px !important;
+        }
+    
+        & &-items {
+            width: 400px !important;
+        }
+    
+        & .wineries-list-container {
+            width: 400px !important;
+        }
+    
+        & .wineries-list-container-card-left .wineries-list-container-card-left-winery {
+            width: 100px;
+        }
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .wineries-container {
+        flex-direction: column;
+
+        & .leaflet-container {
+            width: 300px !important;
+        }
+    
+        & &-inputbox-searchbar {
+            width: 300px !important;
+        }
+    
+        & &-items {
+            width: 300px !important;
+        }
+    
+        & .wineries-list-container {
+            width: 300px !important;
+        }
+    
+        & .wineries-list-container-card-left .wineries-list-container-card-left-winery {
+            width: 70px;
+        }
+    }
+}

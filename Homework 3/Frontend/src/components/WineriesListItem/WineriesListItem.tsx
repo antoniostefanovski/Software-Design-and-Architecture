@@ -25,7 +25,7 @@ function WineriesListItem({ callback, data }: Props) {
                 <img src={locationIcon} alt="location-icon" className='wineries-list-container-card-left-location'/>
                 <img src={ratingIcon} alt="rating-icon" className='wineries-list-container-card-left-ratingicon'/>
                 <span className='wineries-list-container-card-left-rating'>{data.rating}</span>
-                <span className='wineries-list-container-card-left-winery'>{data.name}</span>
+                <span title={data.name} className='wineries-list-container-card-left-winery'>{data.name}</span>
             </div>
             <div className="wineries-list-container-card-right">
                 <Link to="/winery" state={{ wineryId: data.id }}><button className="wineries-list-container-card-right-button">Видете повеќе</button></Link>

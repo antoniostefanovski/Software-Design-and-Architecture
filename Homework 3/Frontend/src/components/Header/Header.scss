@@ -114,8 +114,19 @@
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (min-width: 801px) {
+    .header-navbar-custom {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
     .header {
+
+        &,
+        &-background {
+            height: 250px;
+        }
 
         &-navbar-custom {
             width: 100%;
@@ -158,13 +169,47 @@
             }
         }
 
-        &-title {
+        &-side-page {
             bottom: 5px;
-
-            &-text {
-                font-size: 40px;
-                text-align: left;
-            }
         }
+
+        &-title-text {
+            font-size: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header-title-center .header-title-text {
+        font-size: 38px;
+    }
+
+    .main-top-wineries-title {
+        font-size: 28px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    .main-search-bar {
+        width: 552px !important;
+    }
+}
+
+@media screen and (min-width: 471px) and (max-width: 599px) {
+    .main-search-bar {
+        width: 427px !important;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 470px) {
+    .main-search-bar {
+        width: 397px !important;
+    }
+}
+
+@media screen and (max-width: 399px) {
+    .main-search-bar {
+        width: 342px !important;
     }
 }

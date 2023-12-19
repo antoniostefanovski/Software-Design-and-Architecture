@@ -264,3 +264,96 @@
         }
     }
 }
+
+@media screen and (max-width: 1300px) {
+    .winery-details-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &-forwinery {
+            margin-left: 0;
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            &-description {
+                margin-left: 0;
+                margin-bottom: 21px;
+                width: 85%;
+            }
+
+            &-imageurl {
+                margin-right: 0;
+            }
+        }
+
+        &-location-and-contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        &-location {
+            margin-left: 0;
+        }
+
+        &-contact {
+            margin-right: 0;
+            margin-top: 10px;
+            width: 85%;
+        }
+
+        &-location-map .leaflet-container {
+            width: 620px;
+        }
+
+        & .wine-details-container-forwine {
+            margin-left: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .winery-details-container {
+        & &-content-imageurl-image {
+            width: 394px;
+            height: 275px;
+        }
+
+        & &-location-map .leaflet-container {
+            width: 400px;
+        }
+
+        &-content {
+            &-description {
+                font-size: 19px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .winery-details-container {
+        & &-content-imageurl-image {
+            width: 343px;
+            height: 237px;
+        }
+
+        & &-location-map .leaflet-container {
+            width: 340px;
+        }
+
+        &-content {
+            &-description {
+                font-size: 18px;
+            }
+        }
+    }
+}

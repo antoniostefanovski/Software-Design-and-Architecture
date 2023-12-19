@@ -24,6 +24,26 @@ function Wines() {
     const [filterTypes, setFilterTypes] = useState<string[]>([]);
     const [filterRatings, setFilterRatings] = useState<string[]>([]);
 
+    const getCurrentDimension = () => {
+        return {
+              width: window.innerWidth,
+              height: window.innerHeight
+        }
+    }
+
+    const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+    useEffect(() => {
+        const updateDimension = () => {
+          setScreenSize(getCurrentDimension())
+        }
+        window.addEventListener('resize', updateDimension);
+        
+        return(() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+      }, [screenSize]);
+
     const getData = async () => {
         const wines = await wineService.filterWines();
 
@@ -36,8 +56,8 @@ function Wines() {
         if (!Boolean(wines) || wines.length == 0) return null;
         let wineContainers = [];
 
-        for (let i = 0; i < wines.length; i += 4) {
-            let items = wines.slice(i, i + 4);
+        for (let i = 0; i < wines.length; i += (screenSize.width > 900 ? 4 : 2)) {
+            let items = wines.slice(i, i + (screenSize.width > 900 ? 4 : 2));
             let mappedWines = items?.map((w: WinesSearchInfo, idx: number) => <div key={idx} className="wines-container-filtered-content-item">
                 <HashLink to="/wine#" state={{ wineId: w.id }}><img src={w.imageUrl} alt="wine bottle" className="wines-container-filtered-content-item-img"/></HashLink>
                 <div className="wines-container-filtered-content-item-paragraph">
