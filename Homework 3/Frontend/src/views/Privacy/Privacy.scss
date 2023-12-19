@@ -9,3 +9,11 @@
         }
     }
 }
+
+@media screen and (max-width: 450px) {
+    .privacy-container {
+        &-paragraph {
+           font-size: 19px;
+        }
+    }
+}

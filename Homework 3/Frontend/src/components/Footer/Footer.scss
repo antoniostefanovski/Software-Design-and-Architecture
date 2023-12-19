@@ -90,3 +90,34 @@
         }
     }
 }
+
+// Mobile Version
+@media screen and (max-width: 450px) {
+    .footer {
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+
+        &-info {
+            margin-left: 0px;
+        }
+
+        &-links {
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 0;
+            margin-right: 0px;
+            padding-bottom: 10px;
+
+            &-menu {
+                width: 100px;
+            }
+
+            &-support {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+        }
+    }
+}

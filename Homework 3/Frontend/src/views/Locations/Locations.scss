@@ -9,9 +9,9 @@
         color: black;
     }
 
-        &-card {
-            margin-right: 51px;
-        }
+    &-card {
+        margin-right: 51px;
+    }
     
     &-card:first-of-type {
         margin-bottom: 37px;
@@ -24,5 +24,15 @@
 
     &-card p {
         font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .locations-container {
+        flex-direction: column;
+
+        &-card {
+            margin-right: 0;
+        }
     }
 }

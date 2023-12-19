@@ -36,8 +36,8 @@ function Wines() {
         if (!Boolean(wines) || wines.length == 0) return null;
         let wineContainers = [];
 
-        for (let i = 0; i < wines.length; i += 5) {
-            let items = wines.slice(i, i + 5);
+        for (let i = 0; i < wines.length; i += 4) {
+            let items = wines.slice(i, i + 4);
             let mappedWines = items?.map((w: WinesSearchInfo, idx: number) => <div key={idx} className="wines-container-filtered-content-item">
                 <HashLink to="/wine#" state={{ wineId: w.id }}><img src={w.imageUrl} alt="wine bottle" className="wines-container-filtered-content-item-img"/></HashLink>
                 <div className="wines-container-filtered-content-item-paragraph">

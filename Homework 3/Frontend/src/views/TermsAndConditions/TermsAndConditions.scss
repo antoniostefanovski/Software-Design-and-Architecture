@@ -10,3 +10,11 @@
         }
     }
 }
+
+@media screen and (max-width: 450px) {
+    .tad-container {
+        &-paragraph {
+           font-size: 19px;
+        }
+    }
+}

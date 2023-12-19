@@ -31,7 +31,7 @@ function Footer() {
                 </div>
                 <div className='footer-links-support'>
                     <span className='footer-links-title'>Поддршка</span>
-                    <HashLink to='/contact#' className='footer-links-item'>Контактирајте нé</HashLink>
+                    <HashLink to='/contact#' className='footer-links-item'>Контактирајте нè</HashLink>
                     <HashLink to='/termsandconditions#' className='footer-links-item'>Политика за користење</HashLink>
                     <HashLink to='/privacy#' className='footer-links-item'>Приватност</HashLink>
                     <HashLink to='/faq#' className='footer-links-item'>Прашања и одговори</HashLink>
