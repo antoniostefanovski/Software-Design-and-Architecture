@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WineriesApp.DataContext;
 using WineriesApp.DataContext.Models;
+using WineriesApp.Services.Models;
 
 namespace WineriesApp.Services.Services
 {
@@ -13,22 +14,41 @@ namespace WineriesApp.Services.Services
             this.context = context;
         }
 
-        public Task<List<Winery>> SearchWineriesByName(string? searchTerm, double[] ratings)
+        public Task<List<Winery>> GetTopWineries()
         {
-            Func<Winery, bool> whereQuery = v => true;
+            return context.Wineries.OrderByDescending(w => w.Rating).Take(10).ToListAsync();
+        }
 
-            if (!string.IsNullOrEmpty(searchTerm) && ratings.Any())
+        public Task<List<Winery>> FilterWineries(WineriesFilter filter)
+        {
+            bool WhereQuery(Winery winery)
             {
-                whereQuery = v => v.Name.ToLower().Contains(searchTerm.ToLower()) && ratings.Any(r => v.Rating >= r);
-            } else if (searchTerm is not null)
-            {
-                whereQuery = v => v.Name.ToLower().Contains(searchTerm.ToLower());
-            } else if (ratings.Any())
-            {
-                whereQuery = v => ratings.Any(r => v.Rating >= r);
+                var condition = true;
+
+                if (!string.IsNullOrEmpty(filter.SearchTerm))
+                {
+                    condition = condition && winery.Name.ToLower().Contains(filter.SearchTerm.ToLower());
+                }
+
+                if (filter.Ratings.Any())
+                {
+                    condition = condition && filter.Ratings.Any(r => winery.Rating >= r);
+                }
+
+                if (filter.Locations.Any())
+                {
+                    condition = condition && filter.Locations.Any(l => winery.Municipality == l);
+                }
+
+                return condition;
             }
 
-            return Task.FromResult(context.Wineries.Where(whereQuery).ToList());
+            return Task.FromResult(context.Wineries.Where(WhereQuery).ToList());
+        }
+
+        public Task<Winery?> GetWinery(Guid id)
+        {
+            return context.Wineries.FirstOrDefaultAsync(w => w.Id == id);
         }
     }
 }
