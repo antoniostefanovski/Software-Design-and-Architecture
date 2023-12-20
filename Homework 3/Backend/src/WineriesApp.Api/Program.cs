@@ -30,7 +30,14 @@ await app.Services.ApplyMigrations();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowLocalhost3000");
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("AllowLocalhost3000");
+}
+else
+{
+    app.UseCors("AllowProductionFrontend");
+}
 
 app.UseAuthorization();
 

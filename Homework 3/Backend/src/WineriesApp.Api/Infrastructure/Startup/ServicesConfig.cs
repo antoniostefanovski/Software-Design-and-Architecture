@@ -14,6 +14,13 @@ namespace WineriesApp.Api.Infrastructure.Startup
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
+                
+                options.AddPolicy("AllowProductionFrontend",
+                    builder => builder
+                        .WithOrigins("https://winedonia.netlify.app")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
             
             services.AddScoped<IWineryService, WineryService>();
