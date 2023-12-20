@@ -10,7 +10,7 @@ export class WineryService {
         const model = new WineriesFilter(searchTerm, ratings, locations);
 
         try {
-            const response = await fetch(`https://localhost:7008/api/wineries/filter/search`, {
+            const response = await fetch(`${EnvironmentHelper.isDev() ? 'https://localhost:7008' : 'https://wineriesapp.azurewebsites.net'}/api/wineries/filter/search`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
