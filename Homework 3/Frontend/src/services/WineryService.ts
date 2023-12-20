@@ -1,3 +1,4 @@
+import { EnvironmentHelper } from "../helpers/EnvironmentHelper";
 import { WineriesFilter } from "../models/WineriesFilter";
 import { WineryDetails } from "../models/WineryDetails";
 import { WineryPreviewInfo } from "../models/WineryPreviewInfo";
@@ -31,7 +32,7 @@ export class WineryService {
 
     public async getWineryDetails(id: string): Promise<WineryDetails | null> {
         try {
-            const response = await fetch(`https://localhost:7008/api/wineries/${id}/details`);
+            const response = await fetch(`${EnvironmentHelper.isDev() ? 'https://localhost:7008' : 'https://wineriesapp.azurewebsites.net'}/api/wineries/${id}/details`);
 
             if (response.ok) {
                 const responseData: WineryDetails = await response.json();
@@ -49,7 +50,7 @@ export class WineryService {
 
     public async getTopWineries(): Promise<WineryPreviewInfo[] | null> {
         try {
-            const response = await fetch(`https://localhost:7008/api/wineries/top-wineries`);
+            const response = await fetch(`${EnvironmentHelper.isDev() ? 'https://localhost:7008' : 'https://wineriesapp.azurewebsites.net'}/api/wineries/top-wineries`);
 
             if (response.ok) {
                 const responseData: WineryPreviewInfo[] = await response.json();
