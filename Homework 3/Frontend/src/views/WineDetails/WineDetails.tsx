@@ -26,6 +26,26 @@ function WineDetailsPage() {
 
     const reviewService = new ReviewService();
 
+    const getCurrentDimension = () => {
+        return {
+              width: window.innerWidth,
+              height: window.innerHeight
+        }
+    }
+
+    const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+    useEffect(() => {
+        const updateDimension = () => {
+          setScreenSize(getCurrentDimension())
+        }
+        window.addEventListener('resize', updateDimension);
+        
+        return(() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+      }, [screenSize]);
+
     const getData = async () => {
         if (!Boolean(wineId)) {
             return;
@@ -43,12 +63,28 @@ function WineDetailsPage() {
         }
     }
 
+    const getWinesPerRow = (): number => {
+        if (screenSize.width >= 1300) {
+            return 3;
+        }
+
+        if (screenSize.width < 1300 && screenSize.width >= 900) {
+            return 2;
+        }
+
+        if (screenSize.width < 900) {
+            return 1;
+        }
+
+        return 3;
+    }
+
     const getWineries = () => {
         if (!Boolean(details) || details == null || details.wineries.length == 0) return null;
         let wineryContainers = [];
 
-        for (let i = 0; i < details.wineries.length; i += 3) {
-            let items = details.wineries.slice(i, i + 3);
+        for (let i = 0; i < details.wineries.length; i += getWinesPerRow()) {
+            let items = details.wineries.slice(i, i + getWinesPerRow());
             let wineries = items.map((w: WineryPreviewInfo, idx) => <WineryPreview key={idx} id={w.id ?? ''} img={w.imageUrl ?? ''} rating={w.rating ?? 5} name={w.name ?? ''} description={w.description?.join() ?? ''} />);
 
             let div = <div key={i} className='wine-details-container-wineries-links-container'>
@@ -81,7 +117,7 @@ function WineDetailsPage() {
                     <p className='wine-details-container-forwine-paragraph'>За виното</p>
                 </div>
                 <div className="wine-details-container-content">
-                        <div>
+                        <div className='wine-details-content-container'>
                             <Content content={details?.description ?? []} isCustomStyled={'wine-details-container-content-description'}/>
                             { !showAddReview && <div className="winery-details-container-contact-info-rating-div">
                                 <button onClick={() => setShowAddReview(!showAddReview)} className="winery-details-container-contact-info-rating-div-button">Оцени вино</button>
