@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WineriesApp.DataContext.Enums;
 using WineriesApp.DataContext.Models;
+using WineriesApp.Services.Mappers;
 using WineriesApp.Services.Models;
 using WineriesApp.Services.Services;
 
@@ -34,11 +35,7 @@ public class ReviewController : Controller
                 return new List<ReviewInfo>();
         }
 
-        return reviews.Select(r => new ReviewInfo
-        {
-            Rating = r.Rating,
-            Comment = r.Comment
-        });
+        return reviews.Select(r => new ReviewInfo().CopyFromEntity(r));
     }
 
     [HttpPost("add")]

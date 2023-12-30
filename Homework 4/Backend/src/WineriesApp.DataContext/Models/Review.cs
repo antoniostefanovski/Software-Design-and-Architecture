@@ -20,6 +20,8 @@ namespace WineriesApp.DataContext.Models
         public double Rating { get; set; }
 
         public string? Comment { get; set; }
+        
+        public DateTime Date { get; set; }
 
         public virtual Wine? Wine { get; set; }
 

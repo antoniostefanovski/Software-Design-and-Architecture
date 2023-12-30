@@ -1,4 +1,4 @@
-import { WineType } from "../enums/WineType";
+import { WineType } from "../../enums/WineType";
 
 export class WinesFilter {
     public SearchTerm: string;

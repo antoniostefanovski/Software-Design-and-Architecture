@@ -3,6 +3,16 @@
     align-items: center;
     justify-content: space-between;
 
+    &-show-more-btn {
+        border: none;
+        border-radius: 12px;
+        width: 583px;
+        padding: 10px 0px;
+        font-size: 14px;
+        background: #41714e;
+        color: white;
+    }
+
     &-inputbox {
         margin-left: 50px;
         margin-top: 32px;

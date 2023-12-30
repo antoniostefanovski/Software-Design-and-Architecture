@@ -1,13 +1,14 @@
 import { EnvironmentHelper } from "../helpers/EnvironmentHelper";
-import { WineriesFilter } from "../models/WineriesFilter";
+import { WineriesFilter } from "../models/Filters/WineriesFilter";
 import { WineryDetails } from "../models/WineryDetails";
 import { WineryPreviewInfo } from "../models/WineryPreviewInfo";
 import { WinerySearchInfo } from "../models/WinerySearchInfo";
+import { WinerySearchResult } from "../models/WinerySearchResult";
 
 export class WineryService {
 
-    public async filterWineries(searchTerm: string | null = null, ratings: number[] = [], locations: string[] = []): Promise<WinerySearchInfo[] | undefined> {
-        const model = new WineriesFilter(searchTerm, ratings, locations);
+    public async filterWineries(searchTerm: string | null = null, ratings: number[] = [], locations: string[] = [], batchIndex: number | null = null): Promise<WinerySearchResult | undefined> {
+        const model = new WineriesFilter(searchTerm, ratings, locations, 20, batchIndex);
 
         try {
             const response = await fetch(`${EnvironmentHelper.isDev() ? 'https://localhost:7008' : 'https://wineriesapp.azurewebsites.net'}/api/wineries/filter/search`, {
@@ -19,7 +20,7 @@ export class WineryService {
             });
 
             if (response.ok) {
-                const responseData: Array<WinerySearchInfo> = await response.json();
+                const responseData: WinerySearchResult = await response.json();
                 return responseData;
             } else {
                 console.error('Error:', response.status, response.statusText);

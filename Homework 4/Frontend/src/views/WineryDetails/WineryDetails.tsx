@@ -134,7 +134,7 @@ function WineryDetailsPage() {
                             { !showAddReview && <div className="winery-details-container-contact-info-rating-div">
                                 <button onClick={() => setShowAddReview(!showAddReview)} className="winery-details-container-contact-info-rating-div-button">Оцени винарија</button>
                             </div> }
-                            { showAddReview && <AddReview addReviewCallback={submitReview} classList={undefined} />}
+                            { showAddReview && <AddReview toggleCallback={() => setShowAddReview(false)} addReviewCallback={submitReview} classList={undefined} />}
                         </div>
                     </div>
                 </div>

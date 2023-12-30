@@ -61,6 +61,9 @@ namespace WineriesApp.DataContext.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 

@@ -2,7 +2,7 @@ using WineriesApp.DataContext.Enums;
 
 namespace WineriesApp.Services.Models.Filters
 {
-    public class WinesFilter
+    public class WinesFilter : BaseFilter
     {
         public string? SearchTerm { get; set; }
         

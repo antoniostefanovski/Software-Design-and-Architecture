@@ -43,10 +43,16 @@ namespace WineriesApp.Services.Services
                 return condition;
             }
 
+            var skip = (int)(filter.BatchSize is not null && filter.BatchIndex is not null
+                ? filter.BatchSize * filter.BatchIndex
+                : 0);
+
             return Task.FromResult(context.Wineries
                 .Include(w => w.Municipality)
                 .Where(WhereQuery)
-                .Take(filter.MaxEntries ?? 20)
+                .AsQueryable()
+                .Skip(skip)
+                .Take(filter.BatchSize + 1 ?? 21)
                 .OrderByDescending(w => w.Rating)
                 .ToList());
         }

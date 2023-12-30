@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WineriesApp.Services.Mappers;
 using WineriesApp.Services.Models;
 using WineriesApp.Services.Models.Filters;
 using WineriesApp.Services.Services;
@@ -21,14 +22,7 @@ public class WinesController : ControllerBase
     {
         var wines = await wineService.FilterWines(model);
 
-        return wines.Select(w => new WineSearchInfo
-        {
-            Id = w.Id,
-            ImageUrl = w.PreviewImageUrl,
-            Name = w.Name,
-            Rating = w.Rating,
-            Type = w.Type
-        });
+        return wines.Select(w => new WineSearchInfo().CopyFromEntity(w));
     }
     
     [HttpGet("{id}/details")]
@@ -41,22 +35,6 @@ public class WinesController : ControllerBase
             return null;
         }
 
-        return new WineInfo
-        {
-            Id = id,
-            ImageUrl = wine.MainImageUrl,
-            Description = wine.Description.Split("^split^").ToList(),
-            Name = wine.Name,
-            Rating = wine.Rating,
-            Type = wine.Type,
-            Wineries = wine.Wineries.Select(w => new WineryPreviewInfo
-            {
-                Id = w.Id,
-                Name = w.Name,
-                Description = w.Description.Split("^split^").ToList(),
-                ImageUrl = w.ImageUrl,
-                Rating = w.Rating
-            }).ToList()
-        };
+        return new WineInfo().CopyFromEntity(wine);
     }
 }

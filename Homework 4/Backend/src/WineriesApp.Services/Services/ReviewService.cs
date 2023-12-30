@@ -31,7 +31,8 @@ public class ReviewService : IReviewService
         {
             Rating = model.Rating,
             Comment = model.Comment,
-            Type = model.EntityType
+            Type = model.EntityType,
+            Date = DateTime.Now
         };
 
         switch (model.EntityType)

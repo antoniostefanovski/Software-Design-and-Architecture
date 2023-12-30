@@ -39,8 +39,9 @@ else
     app.UseCors("AllowProductionFrontend");
 }
 
-app.UseAuthorization();
 
+app.UseAuthorization();
 app.MapControllers();
+app.UseExceptionHandler("/api/error/home");
 
 app.Run();

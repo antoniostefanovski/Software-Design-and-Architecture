@@ -22,6 +22,8 @@ function Review({ data }: Props) {
                 <img src={guest} alt="rating-icon" className="review-card-guest-icon"/>
                 &nbsp;
                 <span className="review-card-rating-paragraph-guest">Гостин</span>
+                &nbsp;&nbsp;
+                <span className="review-card-rating-paragraph-from" style={{ fontWeight: 600 }}>{new Date(data.date).toLocaleString()}</span>
             </div>
             <div className="review-card-comment">
                 <span className="review-card-comment-paragraph">{data.comment}</span>

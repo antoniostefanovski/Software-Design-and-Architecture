@@ -27,7 +27,7 @@ public class WineService : IWineService
 
             if (filter.Ratings.Any())
             {
-                condition = condition && filter.Ratings.Any(r => wine.Rating >= r);
+                condition = condition && filter.Ratings.Any(r => wine.Rating >= r && wine.Rating < r + 1);
             }
 
             if (filter.Types.Any())

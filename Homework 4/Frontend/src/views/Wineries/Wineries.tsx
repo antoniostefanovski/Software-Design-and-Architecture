@@ -47,7 +47,8 @@ function Wineries() {
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
     const [searchTerm, setSearchTerm] = useState('');
-
+    const [batchIndex, setBatchIndex] = useState(0);
+    const [lastBatchReached, setLastBatchReached] = useState(true);
     
     useEffect(() => {
         const updateDimension = () => {
@@ -64,8 +65,9 @@ function Wineries() {
         const wineries = await wineryService.filterWineries();
         const municipalities = await municipalityService.getMunicipalities();
 
-        if (Boolean(wineries) && wineries != null) {
-            setFilteredWineries(wineries);
+        if (Boolean(wineries) && wineries != null && wineries.wineries.length > 0) {
+            setFilteredWineries(wineries.wineries);
+            setLastBatchReached(wineries.lastBatch);
         }
 
         if (Boolean(municipalities) && municipalities != null) {
@@ -115,16 +117,18 @@ function Wineries() {
         filterWineries(change, filterRatings.map(r => Number(r)), filterLocations);
     }
 
-    const filterWineries = async (searchTerm: string | null = null, ratings: number[] = [], locations: string[] = []) => {
+    const filterWineries = async (searchTerm: string | null = null, ratings: number[] = [], locations: string[] = [], currBatchIndex: number | null = null) => {
         if (timeoutId) {
             clearTimeout(timeoutId);
         }
 
         const newTimeoutId = setTimeout(async () => {
-            const result = await wineryService.filterWineries(searchTerm, ratings, locations);
+            const result = await wineryService.filterWineries(searchTerm, ratings, locations, currBatchIndex != null ? currBatchIndex! + 1 : null);
 
-            if (Boolean(result)) {
-                setFilteredWineries(result ?? []);
+            if (Boolean(result) && result != null && result.wineries.length > 0) {
+                setFilteredWineries(currBatchIndex != null ? [...filteredWineries, ...result.wineries] : result.wineries);
+                setLastBatchReached(result.lastBatch);
+                setBatchIndex(currBatchIndex != null ? batchIndex! + 1 : 0);
             }
         }, 300);
 
@@ -144,6 +148,14 @@ function Wineries() {
 
         let ratings = change.map(r => Number(r));
         filterWineries(searchTerm, ratings, filterLocations);
+    }
+
+    const onShowMore = () => {
+        if (lastBatchReached) {
+            return;
+        }
+
+        filterWineries(searchTerm, filterRatings.map(r => Number(r)), filterLocations, batchIndex);
     }
 
     return (
@@ -172,6 +184,7 @@ function Wineries() {
                     <div className="wineries-container-items">
                         { filteredWineries.length <= 0 && <p className='wineries-container-items-empty'>Нема записи</p> }
                         { filteredWineries.length > 0 && filteredWineries.map((w, idx) => <WineriesListItem data={w} key={idx} callback={(w: WinerySearchInfo) => onClickShowMarker(w)}/>)}
+                        { !lastBatchReached && <button className='wineries-container-show-more-btn' onClick={onShowMore} >Show more</button> }
                     </div>
                 </div>
 

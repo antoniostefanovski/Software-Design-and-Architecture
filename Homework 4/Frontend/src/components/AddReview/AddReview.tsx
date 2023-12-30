@@ -3,10 +3,11 @@ import './AddReview.scss';
 
 type Props = {
   addReviewCallback: (rating: number, comment: string) => void,
-  classList: string | undefined
+  classList: string | undefined,
+  toggleCallback: () => void
 }
 
-function AddReview({ addReviewCallback, classList }: Props) {
+function AddReview({ addReviewCallback, classList, toggleCallback }: Props) {
     const [comment, setComment] = useState('');
     const [rating, setRating] = useState(5.0);
 
@@ -30,7 +31,10 @@ function AddReview({ addReviewCallback, classList }: Props) {
             <label htmlFor='add-review-select'>Коментар</label>
             <textarea id='add-review-comment' onChange={e => setComment(e.target.value)} className='add-review-comment-textarea'></textarea>
           </div>
-          <button onClick={() => onSubmit()} className='search-bar-filter-submit-btn add-review-submit'>Додај рејтинг</button>
+          <div className='add-review-buttons'>
+            <button onClick={() => onSubmit()} className='search-bar-filter-submit-btn add-review-submit'>Додај рејтинг</button>
+            <button onClick={() => toggleCallback()} style={{ marginLeft: '10px' }} className='search-bar-filter-submit-btn add-review-submit'>Назад</button>
+          </div>
       </div>
     )
 }

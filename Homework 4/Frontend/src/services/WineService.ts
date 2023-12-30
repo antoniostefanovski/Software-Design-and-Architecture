@@ -1,7 +1,7 @@
 import { WineType } from "../enums/WineType";
 import { EnvironmentHelper } from "../helpers/EnvironmentHelper";
 import { WineDetails } from "../models/WineDetails";
-import { WinesFilter } from "../models/WinesFilter";
+import { WinesFilter } from "../models/Filters/WinesFilter";
 import { WinesSearchInfo } from "../models/WinesSearchInfo";
 
 export class WineService {
