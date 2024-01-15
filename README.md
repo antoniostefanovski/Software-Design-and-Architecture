@@ -1,6 +1,7 @@
 ![Logo_Repo](https://github.com/antoniostefanovski/Software-Design-and-Architecture/assets/92383587/a9375b66-86ac-43ae-9d75-e233085ae9dd)
 
 # Winedonia - Дизајн и архитектура на софтвер
+# Jump to PAGE via https://winedonia.netlify.app/
 
 **Автори**
 <ul>
