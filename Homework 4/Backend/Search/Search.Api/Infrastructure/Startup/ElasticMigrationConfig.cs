@@ -19,7 +19,15 @@ public static class ElasticMigrationConfig
             var documents = new List<Document>
             {
                 new()
-                    { Id = Guid.NewGuid(), Name = "KirovskiKiro", Rating = 5.0, Location = "Vo Fantasy Land" }
+                    { Id = Guid.NewGuid(), Name = "KirovskiKiro", Rating = 5.0, Location = "Skopje" },
+                new()
+                    { Id = Guid.NewGuid(), Name = "Lola", Rating = 4.6, Location = "Bitola" },
+                new()
+                    { Id = Guid.NewGuid(), Name = "Hello", Rating = 4.8, Location = "Ohrid" },
+                new()
+                    { Id = Guid.NewGuid(), Name = "Koki", Rating = 4.7, Location = "Skopje" },
+                new()
+                    { Id = Guid.NewGuid(), Name = "Hella", Rating = 4.6, Location = "Bitola" }
             };
 
             var clusterNode = configuration.GetValue<string>("ElasticSearch:NodeName") ?? throw new ArgumentNullException("Cluster node name must not be null.");

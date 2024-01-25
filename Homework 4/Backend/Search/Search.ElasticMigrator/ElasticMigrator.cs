@@ -49,9 +49,19 @@ public class ElasticMigrator
                     )
                     .Number(n => n
                             .Name(n => n.Rating)
+                            .Fields(f => f
+                                .Keyword(k => k
+                                    .Name("keyword")
+                                )
+                            )
                     )
                     .Text(t => t
                             .Name(n => n.Location)
+                            .Fields(f => f
+                                .Keyword(k => k
+                                    .Name("keyword")
+                                )
+                            )
                     )
                 )
             )

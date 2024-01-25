@@ -5,6 +5,6 @@ namespace Search.Services.Searchers;
 
 public interface IDocumentSearcher
 {
-    Task<List<Document>> SearchDocuments(EntityType type, string? searchTerm, string? rating, string? location,
-        CancellationToken token = default);
+    Task<List<Document>> SearchDocuments(EntityType type, string? searchTerm, List<string> ratings,
+        List<string> locations, CancellationToken token = default);
 }

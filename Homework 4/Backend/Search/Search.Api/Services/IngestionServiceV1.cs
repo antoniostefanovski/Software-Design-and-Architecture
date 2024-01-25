@@ -18,8 +18,8 @@ public class IngestionServiceV1
     public override async Task<FuzzySearchResponse> FuzzySearch(FuzzySearchRequest request, ServerCallContext context)
     {
         var documents = await this.searcher.SearchDocuments((EntityType)request.EntityType, request.SearchTerm,
-            request.Rating, request.Location);
-
+            request.Ratings.ToList(), request.Locations.ToList());
+        
         var response = new FuzzySearchResponse();
         
         response.Documents.AddRange(documents.Select(x => new Document

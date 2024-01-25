@@ -9,8 +9,8 @@ service IngestionV1 {
 message FuzzySearchRequest {
     int32 entity_type = 1;
     string search_term = 2;
-    string rating = 3;
-    string location = 4;
+    repeated string ratings = 3;
+    repeated string locations = 4;
 }
 
 message FuzzySearchResponse {
