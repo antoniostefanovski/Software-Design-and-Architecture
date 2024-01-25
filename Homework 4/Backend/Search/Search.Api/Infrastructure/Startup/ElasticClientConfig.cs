@@ -1,8 +1,18 @@
+using Elasticsearch.Net;
+using Nest;
+using Search.Common.Indexers;
+using Search.Common.Interfaces;
+using Search.ElasticMigrator;
+using Search.Services.Searchers;
+
 namespace Search.Api.Infrastructure.Startup;
+
+using Migrator = ElasticMigrator.ElasticMigrator;
 
 public static class ElasticClientConfig
 {
-    public static IServiceCollection AddElasticClient(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+    public static IServiceCollection AddElasticClient(this IServiceCollection services, IConfiguration configuration,
+        IHostEnvironment environment)
         => services
             .AddTransient<IElasticClient>(factory =>
             {
@@ -21,7 +31,8 @@ public static class ElasticClientConfig
                     : new StaticConnectionPool(nodes);
 
                 var settings = new ConnectionSettings(pool)
-                    .BasicAuthentication(configuration.GetValue<string>("ElasticSearch:Username"), configuration.GetValue<string>("ElasticSearch:Password"))
+                    .BasicAuthentication(configuration.GetValue<string>("ElasticSearch:Username"),
+                        configuration.GetValue<string>("ElasticSearch:Password"))
                     .EnableApiVersioningHeader();
 
                 if (environment.IsDevelopment())
@@ -32,5 +43,7 @@ public static class ElasticClientConfig
 
                 return new ElasticClient(settings);
             })
-            .AddTransient<IIndexer, ElasticIndexer>();
+            .AddTransient<IIndexer, Indexer>()
+            .AddSingleton<IDocumentSearcher, DocumentSearcher>()
+            .AddSingleton<IElasticMigrator, Migrator>();
 }

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Search.Services.Searchers;
 
 namespace Search.Api.Controllers
 {
@@ -12,10 +13,12 @@ namespace Search.Api.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IDocumentSearcher searcher;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDocumentSearcher searcher)
         {
             _logger = logger;
+            this.searcher = searcher;
         }
 
         [HttpGet]
