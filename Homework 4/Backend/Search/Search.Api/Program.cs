@@ -33,6 +33,9 @@ namespace Search.Api
             // Logging
             builder.Services.ConfigureLogging();
             
+            // Services
+            builder.Services.ConfigureServices();
+            
             // ElasticSearch
             builder.Services.AddElasticClient(builder.Configuration, builder.Environment);
 

@@ -82,20 +82,9 @@ public class ElasticMigrator
         }
     }
 
-    public async Task PopulateAsync(string indexName, IEnumerable<Document> documents, CancellationToken token = default)
-    {
-        await indexer.IndexMultiple(indexName, documents, token: token);
-    }
-
     public async Task<bool> IndexExistsAsync(string indexName)
     {
         var indexExistsResponse = await client.Indices.ExistsAsync(indexName);
         return indexExistsResponse.Exists;
-    }
-
-    public async Task<bool> IndexHasRowsAsync(string indexName)
-    {
-        var indexExistsResponse = await client.CountAsync<Document>(c => c.Index(indexName));;
-        return indexExistsResponse.Count > 0;
     }
 }
