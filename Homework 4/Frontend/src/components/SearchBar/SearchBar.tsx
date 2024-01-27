@@ -7,7 +7,7 @@ import './SearchBar.scss';
 import { Municipality } from '../../models/Municipality';
 
 type Props = {
-    searchTerm: string | undefined,
+    searchTerm: string | null,
     locations: Municipality[],
     placeholder: string | undefined,
     hasFilter: boolean | undefined,
@@ -104,7 +104,7 @@ function SearchBar({
         <div className={['search-bar', classList].join(" ")}>
             <div className="search-bar-textbox">
                 <img className='search-bar-textbox-icon' src={searchIcon} alt='icon' />
-                <input onKeyDown={onKeyDown} maxLength={50} className='search-bar-textbox-input' onChange={onInputChange} type='text' value={searchTerm} placeholder={placeholder} />
+                <input onKeyDown={onKeyDown} maxLength={50} className='search-bar-textbox-input' onChange={onInputChange} type='text' value={searchTerm ?? ''} placeholder={placeholder} />
             </div>
             <div className='search-bar-optionals-container'>
                 { hasFilter && <div className='search-bar-filter'>

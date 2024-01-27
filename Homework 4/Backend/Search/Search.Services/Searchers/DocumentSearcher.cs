@@ -17,6 +17,7 @@ public class DocumentSearcher
         { "PrefixQuery_Name", Math.Pow(2, 3.7) },
         { "PrefixQuery_Rating", Math.Pow(2, 3.3) },
         { "MatchPhrase_Name", Math.Pow(2, 3) },
+        { "WildcardQuery_Name", Math.Pow(2, 2.8) },
         { "ExactSearch_Location", Math.Pow(2, 2.6) }
     };
 
@@ -25,12 +26,12 @@ public class DocumentSearcher
         this.client = client;
     }
     
-    public async Task<List<Document>> SearchDocuments(EntityType type, string? searchTerm, List<string> ratings, List<string> locations, CancellationToken token = default)
+    public async Task<List<Document>> SearchDocuments(EntityType type, string? searchTerm, List<string> ratings, List<string> locations, int? pageIndex = null, int? pageSize = null, CancellationToken token = default)
     {
         var alias = type == EntityType.Winery ? Alias.Winery : Alias.Wine;
         var request = new SearchRequest<Document>(alias)
         {
-            Size = 100,
+            Size = pageSize ?? 100,
             Source = new SourceFilter(),
             Sort = new List<ISort>
             {
@@ -62,7 +63,13 @@ public class DocumentSearcher
                      * Phrase match
                      * Checks if all the words from the search text are present, in the specified order. Case-insensitive.
                      */
-                    new MatchPhraseQuery { Field = $"{nameof(Document.Name).ToLowerInvariant()}.keyword", Query = searchTerm, Boost = GetBoostValue("MatchPhrase_Name"), Name = "MatchPhrase_Name" }
+                    new MatchPhraseQuery { Field = $"{nameof(Document.Name).ToLowerInvariant()}.keyword", Query = searchTerm, Boost = GetBoostValue("MatchPhrase_Name"), Name = "MatchPhrase_Name" },
+                    
+                    /*
+                     * Wildcard match
+                     * Checks if all the words from the search text are present, in the specified order. Case-insensitive.
+                     */
+                    new WildcardQuery { Field = $"{nameof(Document.Name).ToLowerInvariant()}.keyword", Wildcard = $"*{GetWildcard(searchTerm)}*", CaseInsensitive = true, Boost = GetBoostValue("WildcardQuery_Name"), Name = "WildcardQuery_Name" },
                 }
                 : new List<QueryContainer>();
 
@@ -105,11 +112,19 @@ public class DocumentSearcher
             Should = should,
             MinimumShouldMatch = shouldMatch
         };
+
+        if (pageIndex is not null && pageSize is not null)
+        {
+            request.From = pageIndex * pageSize;
+            request.Size = pageSize;
+        }
         
         var response = await client.SearchAsync<Document>(request, token);
 
         return BuildDocuments(response);
     }
+    
+    private static string GetWildcard(string value) => string.Join('*', value.Split(' ', StringSplitOptions.RemoveEmptyEntries));
 
     private List<Document> BuildDocuments(ISearchResponse<Document> response)
     {

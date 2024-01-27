@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WineriesApp.DataContext;
 using WineriesApp.DataContext.Models;
+using WineriesApp.Services.Clients;
+using WineriesApp.Services.Enums;
+using WineriesApp.Services.Models;
 using WineriesApp.Services.Models.Filters;
 
 namespace WineriesApp.Services.Services
@@ -8,10 +11,12 @@ namespace WineriesApp.Services.Services
     public class WineryService : IWineryService
     {
         private readonly WineriesDbContext context;
+        private readonly IIngestionClient client;
 
-        public WineryService(WineriesDbContext context)
+        public WineryService(WineriesDbContext context, IIngestionClient client)
         {
             this.context = context;
+            this.client = client;
         }
 
         public Task<List<Winery>> GetTopWineries()
@@ -19,47 +24,52 @@ namespace WineriesApp.Services.Services
             return context.Wineries.OrderByDescending(w => w.Rating).Take(12).ToListAsync();
         }
 
-        public Task<List<Winery>> FilterWineries(WineriesFilter filter)
+        public async Task<List<Winery>> FilterWineries(WineriesFilter filter, CancellationToken token = default)
         {
-            bool WhereQuery(Winery winery)
+            var wineries = new List<Winery>();
+            var locations = new List<string>();
+
+            if (filter.Locations.Length > 0)
             {
-                var condition = true;
+                locations = await context.Municipalities.Where(m => filter.Locations.Contains(m.Id)).Select(m => m.Name)
+                    .Distinct().ToListAsync(token);
+            }
+            
+            var searchHits = await client.FuzzySearch(EntityType.Winery, filter.Ratings.ToList(),
+                locations, filter.SearchTerm, filter.BatchIndex, filter.BatchSize + 1, token);
 
-                if (!string.IsNullOrEmpty(filter.SearchTerm))
-                {
-                    condition = condition && winery.Name.ToLower().Contains(filter.SearchTerm.ToLower());
-                }
-
-                if (filter.Ratings.Any())
-                {
-                    condition = condition && filter.Ratings.Any(r => winery.Rating >= r);
-                }
-
-                if (filter.Locations.Any())
-                {
-                    condition = condition && filter.Locations.Any(l => winery.Municipality?.Id == l);
-                }
-
-                return condition;
+            if (!searchHits.Any())
+            {
+                return wineries;
             }
 
-            var skip = (int)(filter.BatchSize is not null && filter.BatchIndex is not null
-                ? filter.BatchSize * filter.BatchIndex
-                : 0);
+            var hitsIds = searchHits.Select(h => h.Id).ToList();
 
-            return Task.FromResult(context.Wineries
-                .Include(w => w.Municipality)
-                .Where(WhereQuery)
-                .AsQueryable()
-                .Skip(skip)
-                .Take(filter.BatchSize + 1 ?? 21)
-                .OrderByDescending(w => w.Rating)
-                .ToList());
+            return await context.Wineries.Where(w => hitsIds.Contains(w.Id)).OrderByDescending(w => w.Rating).ToListAsync(token);
         }
 
-        public Task<Winery?> GetWinery(Guid id)
+        public async Task<Winery?> GetWinery(Guid id)
         {
-            return context.Wineries.FirstOrDefaultAsync(w => w.Id == id);
+            return context.Wineries.FirstOrDefault(w => w.Id == id);
+        }
+
+        public async Task IngestWineries(CancellationToken token = default)
+        {
+            if (!await client.IndexIsEmpty(EntityType.Winery, token))
+            {
+                return;
+            }
+            
+            var wineries = await context.Wineries.Include(w => w.Municipality).ToListAsync(token);
+            var documents = wineries.Select(w => new Document
+            {
+                Id = w.Id,
+                Location = w.Municipality?.Name,
+                Name = w.Name,
+                Rating = w.Rating
+            }).ToList();
+
+            await client.IngestDocuments(documents, ActionType.Ingest, EntityType.Winery, token);
         }
     }
 }

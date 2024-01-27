@@ -5,8 +5,10 @@ namespace WineriesApp.Services.Services
 {
     public interface IWineService
     {
-        Task<List<Wine>> FilterWines(WinesFilter filter);
+        Task<List<Wine>> FilterWines(WinesFilter filter, CancellationToken token = default);
 
         Task<Wine?> GetWine(Guid id);
+
+        Task IngestWines(CancellationToken token = default);
     }
 }

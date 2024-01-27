@@ -1,8 +1,6 @@
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Search.Api.Protos;
-using Search.Common.Enums;
-using Search.ElasticMigrator;
 using Search.Services.Searchers;
 using Search.Services.Services;
 
@@ -22,8 +20,8 @@ public class IngestionServiceV1
     
     public override async Task<FuzzySearchResponse> FuzzySearch(FuzzySearchRequest request, ServerCallContext context)
     {
-        var documents = await this.searcher.SearchDocuments((Common.Enums.EntityType)request.EntityType, request.SearchTerm,
-            request.Ratings.ToList(), request.Locations.ToList());
+        var documents = await searcher.SearchDocuments((Common.Enums.EntityType)request.EntityType, request.SearchTerm,
+            request.Ratings.ToList(), request.Locations.ToList(), request.PageIndex, request.PageSize);
         
         var response = new FuzzySearchResponse();
         

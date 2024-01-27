@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using WineriesApp.Services.Clients;
+using WineriesApp.Services.Enums;
 using WineriesApp.Services.Mappers;
 using WineriesApp.Services.Models;
 using WineriesApp.Services.Models.Filters;
@@ -11,10 +13,12 @@ namespace WineriesApp.Api.Controllers;
 public class WinesController : ControllerBase
 {
     private readonly IWineService wineService;
+    private readonly IIngestionClient ingestionClient;
 
-    public WinesController(IWineService wineService)
+    public WinesController(IWineService wineService, IIngestionClient ingestionClient)
     {
         this.wineService = wineService;
+        this.ingestionClient = ingestionClient;
     }
     
     [HttpPost("filter/search")]
@@ -36,5 +40,11 @@ public class WinesController : ControllerBase
         }
 
         return new WineInfo().CopyFromEntity(wine);
+    }
+
+    [HttpGet("test")]
+    public async Task<IActionResult> Test(int batchIndex, int batchSize)
+    {
+        return Ok(await ingestionClient.FuzzySearch(EntityType.Winery, batchIndex: batchIndex, batchSize: batchSize));
     }
 }

@@ -6,8 +6,6 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
     ports:
       - "9200:9200"
-    volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
       - node.name=search01
       - xpack.security.enabled=true
@@ -19,6 +17,3 @@ services:
 networks:
   elastic:
     driver: bridge
-
-volumes:
-  elasticsearch-data:

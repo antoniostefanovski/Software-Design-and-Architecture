@@ -68,7 +68,7 @@ public class IngestionService
                         query
                             .Match(match =>
                                 match
-                                    .Field($"{nameof(Document.Id).ToLower()}.keyword")
+                                    .Field($"{nameof(Document.Id).ToLower()}")
                                     .Query(document.Id.ToString()))), token);
 
             if (response.ServerError is not null)
@@ -95,7 +95,7 @@ public class IngestionService
 
             var updateResponse =
                 await client.UpdateAsync<Document>(document.Id,
-                    req => req.Index(indexName).Doc(updatedDocument), token);
+                    req => req.Index(indexName).Doc(updatedDocument).DocAsUpsert(), token);
             
             if (updateResponse.Result == Result.Noop)
             {

@@ -46,7 +46,7 @@ function Wineries() {
     const [hoveredWinery, setHoveredWinery] = useState<WinerySearchInfo | null>(null);
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState<string | null>(null);
     const [batchIndex, setBatchIndex] = useState(0);
     const [lastBatchReached, setLastBatchReached] = useState(true);
     
@@ -113,8 +113,14 @@ function Wineries() {
 	}
 
     const onSearchTermChange = async (change: string) => {
-        setSearchTerm(change);
-        filterWineries(change, filterRatings.map(r => Number(r)), filterLocations);
+        let searchTerm = null;
+
+        if (change != '') {
+            searchTerm = change;
+        }
+        
+        setSearchTerm(searchTerm);
+        filterWineries(searchTerm, filterRatings.map(r => Number(r)), filterLocations);
     }
 
     const filterWineries = async (searchTerm: string | null = null, ratings: number[] = [], locations: string[] = [], currBatchIndex: number | null = null) => {
@@ -125,7 +131,7 @@ function Wineries() {
         const newTimeoutId = setTimeout(async () => {
             const result = await wineryService.filterWineries(searchTerm, ratings, locations, currBatchIndex != null ? currBatchIndex! + 1 : null);
 
-            if (Boolean(result) && result != null && result.wineries.length > 0) {
+            if (Boolean(result) && result != null) {
                 setFilteredWineries(currBatchIndex != null ? [...filteredWineries, ...result.wineries] : result.wineries);
                 setLastBatchReached(result.lastBatch);
                 setBatchIndex(currBatchIndex != null ? batchIndex! + 1 : 0);

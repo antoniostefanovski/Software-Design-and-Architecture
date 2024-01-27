@@ -17,6 +17,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureDbContext(builder.Environment, builder.Configuration);
 
+// Configure gRPC clients
+builder.Services.ConfigureGrpcClients(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 await app.Services.ApplyMigrations();
+
+// Configure Search
+await app.Services.ConfigureSearch();
 
 app.UseHttpsRedirection();
 

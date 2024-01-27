@@ -23,10 +23,10 @@ namespace WineriesApp.Api.Infrastructure.Startup
                         .AllowCredentials());
             });
             
-            services.AddScoped<IWineryService, WineryService>();
-            services.AddScoped<IMunicipalityService, MunicipalityService>();
-            services.AddScoped<IReviewService, ReviewService>();
-            services.AddScoped<IWineService, WineService>();
+            services.AddSingleton<IWineryService, WineryService>();
+            services.AddSingleton<IMunicipalityService, MunicipalityService>();
+            services.AddSingleton<IReviewService, ReviewService>();
+            services.AddSingleton<IWineService, WineService>();
             
             return services;
         }
