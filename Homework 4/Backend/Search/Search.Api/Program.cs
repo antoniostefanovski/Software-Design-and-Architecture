@@ -10,18 +10,6 @@ namespace Search.Api
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            
-            builder.WebHost.ConfigureKestrel((context, options) =>
-            {
-                options.ListenAnyIP(7279, listenOptions =>
-                {
-                    listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                    listenOptions.UseHttps(options =>
-                    {
-                        options.SslProtocols = SslProtocols.Tls12;
-                    });
-                });
-            });
 
             // Add services to the container.
 
